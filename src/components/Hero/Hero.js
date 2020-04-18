@@ -9,7 +9,7 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>Hi! I&rsquo;m Chris.</h1>
+        <h1>Notes about <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" className="subtitle" rel="noreferrer">JavaScript</a>, <a href="https://reactjs.org" target="_blank" rel="noreferrer">ReactJS</a> and more by Dennis Morello.</h1>
         <p>
           I&rsquo;m a software engineer based in Milwaukee, WI.
           <br />I enjoy Javascript, DevOps and Testing.
@@ -43,6 +43,11 @@ const Hero = props => {
           color: ${theme.hero.h1.color};
           line-height: ${theme.hero.h1.lineHeight};
           text-remove-gap: both 0 'Open Sans';
+        }
+
+        .subtitle {
+          background-color: #edd53f;
+          color: #252724;
         }
 
         p {
