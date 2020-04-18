@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:9000/",
+  "ignoreTestFiles": [""],
+  "integrationFolder": "cypress/e2e",
+  "video": false,
+  "chromeWebSecurity": false
+}
