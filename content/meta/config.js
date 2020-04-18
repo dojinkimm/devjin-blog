@@ -1,21 +1,21 @@
 module.exports = {
-  siteTitle: 'Dojin Kim | Father, Developer, Test Engineer', // <title>
-  shortSiteTitle: 'Techie, Developer', // <title> ending for posts and pages
-  siteDescription: 'Thoughts and projects',
+  siteTitle: 'Dev-jin | Software Engineer', // <title>
+  shortSiteTitle: 'Dev-jin, Server Developer', // <title> ending for posts and pages
+  siteDescription: 'Blog with traces of studies about software development',
   siteUrl: 'https://chrisotto.dev',
   siteLanguage: 'en',
 
   /* author */
-  authorName: 'Chris Otto',
-  authorTwitterAccount: 'wisco_cmo',
+  authorName: "Dojin Kim",
+  authorTwitterAccount: "dojinkim",
 
   /* info */
-  headerTitle: 'Chris Otto',
-  headerSubTitle: 'Developer, Test Engineer',
+  headerTitle: "Dojin Kim",
+  headerSubTitle: "Software Engineer @Rainist",
 
   /* manifest.json */
-  manifestName: 'Chris Otto | Father, Developer, Test Engineer',
-  manifestShortName: 'Chris Otto', // max 12 characters
+  manifestName: 'Dojin Kim',
+  manifestShortName: 'Dojin Kim', // max 12 characters
   manifestStartUrl: '/index.html',
   manifestBackgroundColor: 'white',
   manifestThemeColor: '#666',
@@ -27,9 +27,9 @@ module.exports = {
   // social
   authorSocialLinks: [
     { name: 'dev', url: 'https://dev.to/chrisotto' },
-    { name: 'github', url: 'https://github.com/chrisotto6' },
-    { name: 'instagram', url: 'https://instagram.com/wisco_cmo' },
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/ottochristopher/' },
+    { name: 'github', url: 'https://github.com/dojinkimm' },
+    { name: 'instagram', url: 'https://instagram.com/dojinmann' },
+    { name: 'linkedin', url: 'https://www.linkedin.com/in/dojin-henry-kim-64080a158/' },
     { name: 'twitter', url: 'https://twitter.com/wisco_cmo' },
   ],
 }
