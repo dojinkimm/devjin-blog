@@ -188,17 +188,17 @@ export const query = graphql`
         }
       }
     }
-    bgDesktop: imageSharp(fluid: { originalName: { regex: "/mesh/" } }) {
+    bgDesktop: imageSharp(fluid: { originalName: { regex: "/city/" } }) {
       resize(width: 1200, quality: 90, cropFocus: CENTER) {
         src
       }
     }
-    bgTablet: imageSharp(fluid: { originalName: { regex: "/mesh/" } }) {
+    bgTablet: imageSharp(fluid: { originalName: { regex: "/city/" } }) {
       resize(width: 800, height: 1100, quality: 90, cropFocus: CENTER) {
         src
       }
     }
-    bgMobile: imageSharp(fluid: { originalName: { regex: "/mesh/" } }) {
+    bgMobile: imageSharp(fluid: { originalName: { regex: "/city/" } }) {
       resize(width: 450, height: 850, quality: 90, cropFocus: CENTER) {
         src
       }

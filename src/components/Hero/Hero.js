@@ -9,11 +9,7 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>Notes about <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" className="subtitle" rel="noreferrer">JavaScript</a> and more by Dennis Morello.</h1>
-        <p>
-          I&rsquo;m a software engineer based in Milwaukee, WI.
-          <br />I enjoy Javascript, DevOps and Testing.
-        </p>
+        <h1><a href="#" target="_blank" className="subtitle" rel="noreferrer">StudyBlog</a> about Software Development</h1>
         <button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
         </button>
@@ -43,6 +39,9 @@ const Hero = props => {
           color: ${theme.hero.h1.color};
           line-height: ${theme.hero.h1.lineHeight};
           text-remove-gap: both 0 'Open Sans';
+        }
+        .title{
+          color: #000000;
         }
 
         .subtitle {

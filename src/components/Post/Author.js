@@ -3,7 +3,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import PropTypes from 'prop-types'
 
 import config from '../../../content/meta/config'
-import avatar from '../../images/jpg/avatar.jpg'
+import avatar from '../../images/png/avatar.png'
 
 const Author = props => {
   const { note, theme } = props
