@@ -9,7 +9,7 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>Notes about <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" className="subtitle" rel="noreferrer">JavaScript</a>, <a href="https://reactjs.org" target="_blank" rel="noreferrer">ReactJS</a> and more by Dennis Morello.</h1>
+        <h1>Notes about <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" className="subtitle" rel="noreferrer">JavaScript</a> and more by Dennis Morello.</h1>
         <p>
           I&rsquo;m a software engineer based in Milwaukee, WI.
           <br />I enjoy Javascript, DevOps and Testing.
