@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FaGithub } from 'react-icons/fa/'
 import { FaLinkedin } from 'react-icons/fa/'
-import { FaTwitter } from 'react-icons/fa/'
 import { FaInstagram } from 'react-icons/fa/'
 import { FaDev } from 'react-icons/fa/'
 
@@ -12,7 +11,6 @@ const Social = props => {
   const { theme } = props
   const items = config.authorSocialLinks
   const icons = {
-    twitter: FaTwitter,
     github: FaGithub,
     linkedin: FaLinkedin,
     instagram: FaInstagram,

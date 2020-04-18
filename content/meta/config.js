@@ -7,7 +7,6 @@ module.exports = {
 
   /* author */
   authorName: "Dojin Kim",
-  authorTwitterAccount: "dojinkim",
 
   /* info */
   headerTitle: "Dojin Kim",
@@ -30,6 +29,5 @@ module.exports = {
     { name: 'github', url: 'https://github.com/dojinkimm' },
     { name: 'instagram', url: 'https://instagram.com/dojinmann' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/dojin-henry-kim-64080a158/' },
-    { name: 'twitter', url: 'https://twitter.com/wisco_cmo' },
   ],
 }

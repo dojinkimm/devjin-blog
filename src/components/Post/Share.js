@@ -3,10 +3,8 @@ import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
   LinkedinShareButton,
-  TwitterShareButton,
   FacebookShareCount,
   FacebookIcon,
-  TwitterIcon,
   LinkedinIcon,
 } from 'react-share'
 
@@ -32,15 +30,6 @@ const PostShare = props => {
       <div className="share">
         <span className="label">SHARE</span>
         <div className="links">
-          <TwitterShareButton
-            url={url}
-            title={title}
-            additionalProps={{
-              'aria-label': 'Twitter share',
-            }}
-          >
-            <TwitterIcon round size={iconSize} />
-          </TwitterShareButton>
           <FacebookShareButton
             url={url}
             quote={`${title} - ${excerpt}`}

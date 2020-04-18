@@ -38,7 +38,5 @@ describe('Index Page', () => {
       .should('have.attr', 'title', 'instagram')
       .next()
       .should('have.attr', 'title', 'linkedin')
-      .next()
-      .should('have.attr', 'title', 'twitter')
   })
 })
