@@ -1,6 +1,5 @@
 require('dotenv').config()
 const config = require('./content/meta/config')
-// const transformer = require('./src/utils/algolia')
 
 const query = `{
   allMdx(
@@ -42,13 +41,6 @@ module.exports = {
     title: config.siteTitle,
     description: config.siteDescription,
     siteUrl: config.siteUrl,
-    // algolia: {
-    //   appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',
-    //   searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY
-    //     ? process.env.ALGOLIA_SEARCH_ONLY_API_KEY
-    //     : '',
-    //   indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : '',
-    // },
     facebook: {
       appId: process.env.FB_APP_ID ? process.env.FB_APP_ID : '',
     },
@@ -62,16 +54,6 @@ module.exports = {
         component: require.resolve(`./src/layouts/`),
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-algolia`,
-    //   options: {
-    //     appId: process.env.ALGOLIA_APP_ID ? process.env.ALGOLIA_APP_ID : '',
-    //     apiKey: process.env.ALGOLIA_ADMIN_API_KEY ? process.env.ALGOLIA_ADMIN_API_KEY : '',
-    //     indexName: process.env.ALGOLIA_INDEX_NAME ? process.env.ALGOLIA_INDEX_NAME : '',
-    //     queries,
-    //     chunkSize: 100000, // default: 1000
-    //   },
-    // },
     'gatsby-transformer-json',
     {
       resolve: `gatsby-source-filesystem`,
