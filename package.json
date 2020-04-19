@@ -4,20 +4,18 @@
   "author": "Chris Otto <chris.otto6@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node" : "10.x"
+    "node": "10.x"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.8",
     "@mdx-js/react": "^1.5.8",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
-    "algoliasearch": "^4.1.0",
     "antd": "^3.26.15",
     "braces": "^3.0.2",
     "fontfaceobserver": "^2.0.13",
     "gatsby": "^2.20.22",
     "gatsby-image": "^2.3.2",
-    "gatsby-plugin-algolia": "^0.1.1",
     "gatsby-plugin-catch-links": "^2.2.1",
     "gatsby-plugin-feed-mdx": "^1.0.1",
     "gatsby-plugin-google-analytics": "^2.2.2",

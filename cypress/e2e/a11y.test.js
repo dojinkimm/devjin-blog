@@ -31,12 +31,12 @@ describe('Accessibility checks', () => {
   //  cy.checkA11y()
   //})
 
-  it('Contact Page', () => {
-    cy.visit('/contact')
-    cy.wait(1000)
-    cy.injectAxe()
-    cy.checkA11y()
-  })
+  // it('Contact Page', () => {
+  //   cy.visit('/contact')
+  //   cy.wait(1000)
+  //   cy.injectAxe()
+  //   cy.checkA11y()
+  // })
 
   it('404 Page', () => {
     cy.visit('/404')

@@ -20,8 +20,8 @@ class Menu extends React.Component {
       { to: '/', label: 'Home', icon: FaHome },
       { to: '/tag/', label: 'Tags', icon: FaTag },
       { to: '/project/', label: 'Projects', icon: FaCode },
-      { to: '/search/', label: 'Search', icon: FaSearch },
-      { to: '/contact/', label: 'Contact', icon: FaEnvelope },
+      // { to: '/search/', label: 'Search', icon: FaSearch },
+      // { to: '/contact/', label: 'Contact', icon: FaEnvelope },
     ]
 
     this.renderedItems = [] // will contain references to rendered DOM elements of menu

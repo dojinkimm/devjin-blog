@@ -5,12 +5,12 @@ import { InstantSearch, SearchBox, Hits, Stats, Pagination } from 'react-instant
 import Hit from './Hit'
 
 const Search = props => {
-  const { algolia } = props
+  // const { algolia } = props
 
   return (
     <React.Fragment>
       <div className="search">
-        {algolia && algolia.appId && (
+        {/* {algolia && algolia.appId && (
           <InstantSearch
             appId={algolia.appId}
             apiKey={algolia.searchOnlyApiKey}
@@ -25,7 +25,7 @@ const Search = props => {
             <Hits hitComponent={Hit} />
             <Pagination />
           </InstantSearch>
-        )}
+        )} */}
       </div>
 
       {/* --- STYLES --- */}
