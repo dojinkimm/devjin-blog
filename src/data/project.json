@@ -6,12 +6,4 @@
     "tech": ["ML", "Python"],
     "githuburl": "https://github.com/dojinkimm/Object_Detection_Video_DNN_Tensorflow_Pytorch"
   },
-  {
-    "name": "Personal Website",
-    "description": "Personal site showcasing my blog, projects and online resume.",
-    "img": "chrisottodev.png",
-    "tech": ["Gatsby", "React", "GraphQL", "Node"],
-    "githuburl": "https://github.com/chrisotto6/chrisottodev",
-    "projecturl": "https://chrisotto.dev/"
-  }
 ]
