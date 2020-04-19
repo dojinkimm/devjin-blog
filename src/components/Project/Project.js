@@ -31,11 +31,6 @@ const Project = props => {
           ))}
         </section>
         <footer>
-          {projecturl && (
-            <a href={projecturl} target="_blank" rel="noopener noreferrer" title={name}>
-              <FaExternalLinkAlt size={28} />
-            </a>
-          )}
           {githuburl && (
             <a href={githuburl} target="_blank" rel="noopener noreferrer" title={name}>
               <FaGithub size={28} />

@@ -18,7 +18,6 @@ const ProjectPage = () => {
               img
               tech
               githuburl
-              projecturl
             }
           }
         }

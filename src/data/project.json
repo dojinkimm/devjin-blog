@@ -5,5 +5,5 @@
     "img": "hero-mesh.png",
     "tech": ["ML", "Python"],
     "githuburl": "https://github.com/dojinkimm/Object_Detection_Video_DNN_Tensorflow_Pytorch"
-  },
+  }
 ]
