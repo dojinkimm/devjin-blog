@@ -314,9 +314,11 @@ home: BlocProvider<IncrementBloc>(
 
 이 line에서, *IncrementBloc*을 조정할 수 있는 new *BlocProvider*를 인스턴스화하고 *CounterPage* 를 child로 render한다.
 
-밑의 코드를 통해서, **BlocProvider** 밑에 있는 어느 위젯에서나 *IncrementBloc* 을 조정할 수 있게 된다. 
+밑의 코드를 통해서, **BlocProvider** 밑에 있는 어느 위젯에서나 IncrementBloc 을 조정할 수 있게 된다. 
 
-> IncrementBloc bloc = BlocProvider.of<IncrementBloc>(context);
+```dart
+IncrementBloc bloc = BlocProvider.of<IncrementBloc>(context);
+```
 
 ### **Could we have multiple BLoCs?**
 
