@@ -168,7 +168,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
-        siteUrl: 'https://www.chrisotto.dev',
+        siteUrl: 'https://devjin-blog.com',
       },
     },
     `gatsby-plugin-catch-links`,
