@@ -308,8 +308,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://www.chrisotto.dev',
-        sitemap: 'https://www.chrisotto.dev/sitemap.xml',
+        host: 'https://devjin-blog.com/',
+        sitemap: 'https://devjin-blog.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
