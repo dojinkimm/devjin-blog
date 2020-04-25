@@ -1,7 +1,7 @@
 describe('Index Page', () => {
   it('Index Page Navigation', () => {
     cy.visit('/')
-    cy.title().should('eq', 'Chris Otto | Father, Developer, Test Engineer')
+    cy.title().should('eq', '주니어의 DevBlog')
     cy.get('button[aria-label="scroll"]').click()
   })
   it('Posts are rendered', () => {

@@ -7,7 +7,7 @@ Array [
   >
     <a
       className="socialLink"
-      href="https://dev.to/chrisotto"
+      href="https://devjin-blog.com"
       rel="noopener noreferrer"
       target="_blank"
       title="dev"
@@ -34,7 +34,7 @@ Array [
     </a>
     <a
       className="socialLink"
-      href="https://github.com/chrisotto6"
+      href="https://github.com/dojinkimm"
       rel="noopener noreferrer"
       target="_blank"
       title="github"
@@ -88,7 +88,7 @@ Array [
     </a>
     <a
       className="socialLink"
-      href="https://www.linkedin.com/in/ottochristopher/"
+      href="https://www.linkedin.com/in/dojin-henry-kim-64080a158/"
       rel="noopener noreferrer"
       target="_blank"
       title="linkedin"

@@ -297,7 +297,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Chris Otto's RSS Feed",
+            title: "Devjin's RSS Feed",
           },
         ],
       },

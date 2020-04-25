@@ -13,14 +13,14 @@ const Footer = props => {
         <Social theme={theme} />
         <ul>
           <li>
-            © {year} Chris Otto | Hosted on{' '}
+            © {year} Dojin Kim | Hosted on{' '}
             <a
-              href="https://www.netlify.com"
+              href="https://vercel.com"
               target="_blank"
               rel="noopener noreferrer"
-              title="Netlify"
+              title="ZEIT"
             >
-              Netlify
+              ZEIT
             </a>{' '}
             | Build with{' '}
             <a

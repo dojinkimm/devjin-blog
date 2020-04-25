@@ -15,7 +15,7 @@ stream.once('open', function(fd) {
   stream.write('---\n')
   stream.write('title: \n')
   stream.write('cover: \n')
-  stream.write('author: Chris Otto\n')
+  stream.write('author: Dojin Kim\n')
   stream.write("tags: ['']\n")
   stream.write('published: false\n')
   stream.write('---\n')
