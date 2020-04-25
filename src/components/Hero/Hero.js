@@ -9,7 +9,7 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1><a href="#" target="_blank" className="subtitle" rel="noreferrer">StudyBlog</a> about Software Development</h1>
+        <h1> &#128036; 주니어 개발자의 <a href="#" target="_blank" className="subtitle" rel="noreferrer">  Dev </a> &nbsp;블로그</h1>
         <button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
         </button>
@@ -59,7 +59,7 @@ const Hero = props => {
         }
 
         button {
-          background: ${theme.background.color.brand};
+          background: #edd53f;
           border: 0;
           border-radius: 50%;
           font-size: ${theme.font.size.m};
@@ -76,9 +76,9 @@ const Hero = props => {
           :global(svg) {
             position: relative;
             top: 5px;
-            fill: ${theme.color.neutral.white};
+            fill: #252724;
             stroke-width: 40;
-            stroke: ${theme.color.neutral.white};
+            stroke: #252724;
             animation-duration: ${theme.time.duration.long};
             animation-name: buttonIconMove;
             animation-iteration-count: infinite;
