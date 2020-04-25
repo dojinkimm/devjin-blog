@@ -1,8 +1,8 @@
 module.exports = {
-  siteTitle: 'Dev-jin | Software Engineer', // <title>
-  shortSiteTitle: 'Dev-jin, Server Developer', // <title> ending for posts and pages
+  siteTitle: '주니어의 DevBlog', // <title>
+  shortSiteTitle: '주니어의 DevBlog', // <title> ending for posts and pages
   siteDescription: 'Blog with traces of studies about software development',
-  siteUrl: 'https://chrisotto.dev',
+  siteUrl: 'https://devjin-blog.now.sh/',
   siteLanguage: 'en',
 
   /* author */
@@ -25,7 +25,7 @@ module.exports = {
 
   // social
   authorSocialLinks: [
-    { name: 'dev', url: 'https://dev.to/chrisotto' },
+    { name: 'dev', url: 'https://devjin-blog.now.sh/' },
     { name: 'github', url: 'https://github.com/dojinkimm' },
     { name: 'instagram', url: 'https://instagram.com/dojinmann' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/dojin-henry-kim-64080a158/' },

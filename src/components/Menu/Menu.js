@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { FaHome } from 'react-icons/fa/'
 import { FaTag } from 'react-icons/fa/'
 import { FaCode } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa/'
 
 import Item from './Item'
 import Expand from './Expand'
@@ -15,6 +16,7 @@ class Menu extends React.Component {
 
     this.items = [
       { to: '/', label: 'Home', icon: FaHome },
+      { to: '/about/', label: 'About', icon: FaUser },
       { to: '/tag/', label: 'Tags', icon: FaTag },
       { to: '/project/', label: 'Projects', icon: FaCode },
     ]

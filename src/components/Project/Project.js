@@ -7,7 +7,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa/'
 const Project = props => {
   const {
     theme,
-    project: { name, description, img, tech, githuburl, projecturl },
+    project: { name, description, img, tech, githuburl },
     images,
   } = props
 
