@@ -17,17 +17,17 @@ published: true
 
 [본 내용 링크](https://blog.paperspace.com/how-to-implement-a-yolo-v3-object-detector-from-scratch-in-pytorch-part-3/)
 
-지난 [Part 2](https://dojinkimm.github.io/ml/2019/08/01/yolo-part2/)에서는 YOLO 구조에 사용되는 layer들을 구현했고, 이번 Part 3에서는 Pytorch로 YOLO 네트워크 구조를 구현해서 이미지가 주어졌을 때 결과를 생성해내는 코드를 작성할 것이다. 이번 Part의 목적은 네트워크의 forward pass를 디자인 하는 것이다.
+지난 [Part 2](https://devjin-blog.com/yolo-part2/)에서는 YOLO 구조에 사용되는 layer들을 구현했고, 이번 Part 3에서는 Pytorch로 YOLO 네트워크 구조를 구현해서 이미지가 주어졌을 때 결과를 생성해내는 코드를 작성할 것이다. 이번 Part의 목적은 네트워크의 forward pass를 디자인 하는 것이다.
 
 해당 코드는 `Python 3.5`, `Pytorch 0.4` 에서 실행되게끔 디자인이 되었고, 이 [Github repo](https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch)에서 코드들을 볼 수 있다.
 
 튜토리얼은 총 5 단계로 나뉘어져 있다:
 
-&nbsp;1. [Part 1: YOLO가 어떻게 작동되는지 이해하기](https://dojinkimm.github.io/computer_vision/2019/07/31/yolo-part1.html) <br/>
-&nbsp;2. [Part 2 (현재 파트): 네트워크 구조의 layers들 구현하기](https://dojinkimm.github.io/computer_vision/2019/08/01/yolo-part2.html)<br/>
-&nbsp;3. Part 3 (현재 파트): 네트워크의 forward pass 구현하기<br/>
-&nbsp;4. [Part 4 : Objectness 점수 thresholding과 non-maximum suppression(NMS)](https://dojinkimm.github.io/computer_vision/2019/08/06/yolo-part4.html)<br/>
-&nbsp;5. [Part 5 : 입력과 출력 pipeline 디자인하기](https://dojinkimm.github.io/computer_vision/2019/08/07/yolo-part5.html)<br/>
+&nbsp;1. [Part 1 : YOLO가 어떻게 작동되는지 이해하기](https://devjin-blog.com/yolo-part1/)<br/>
+&nbsp;2. [Part 2 : 네트워크 구조의 layers들 구현하기](https://devjin-blog.com/yolo-part2/)<br/>
+&nbsp;3. Part 3 : 네트워크의 forward pass 구현하기<br/>
+&nbsp;4. [Part 4 : Objectness 점수 thresholding과 non-maximum suppression(NMS)](https://devjin-blog.com/yolo-part4/)<br/>
+&nbsp;5. [Part 5 : 입력과 출력 pipeline 디자인하기](https://devjin-blog.com/yolo-part5/)<br/>
 <br/>
 
 
@@ -496,7 +496,7 @@ model = Darknet("cfg/yolov3.cfg")
 model.load_weights("yolov3.weights")
 ```
 
-이 것으로 Part3은 마무리가 됐다. Model이 만들어졌고 weights도 load되었기 때문에 이제 objects를 detect할 수 있게 됐다. 다음 [Part4](https://dojinkimm.github.io/computer_vision/2019/08/06/yolo-part4.html)에서는 objectness confidence thresholding과 non-maximum ssuppression으로 detections 하는 방법을 다룰 것이다. 
+이 것으로 Part3은 마무리가 됐다. Model이 만들어졌고 weights도 load되었기 때문에 이제 objects를 detect할 수 있게 됐다. 다음 [Part4](https://devjin-blog.com/yolo-part4/)에서는 objectness confidence thresholding과 non-maximum suppression으로 detections 하는 방법을 다룰 것이다. 
 
 ### **Further Reading**
 

@@ -23,11 +23,11 @@ published: true
 
 튜토리얼은 총 5 단계로 나뉘어져 있다:
 
-&nbsp;1. [Part 1: YOLO가 어떻게 작동되는지 이해하기](https://dojinkimm.github.io/computer_vision/2019/07/31/yolo-part1.html)<br/>
-&nbsp;2. [Part 2 (현재 파트): 네트워크 구조의 layers들 구현하기](https://dojinkimm.github.io/computer_vision/2019/08/01/yolo-part2.html)<br/>
-&nbsp;3. [Part 3 : 네트워크의 forward pass 구현하기](https://dojinkimm.github.io/computer_vision/2019/08/05/yolo-part3.html)<br/>
-&nbsp;4. Part 4(현재 파트) : Objectness 점수 thresholding과 non-maximum suppression(NMS)<br/>
-&nbsp;5. [Part 5 : 입력과 출력 pipeline 디자인하기](https://dojinkimm.github.io/computer_vision/2019/08/07/yolo-part5.html)<br/>
+&nbsp;1. [Part 1 : YOLO가 어떻게 작동되는지 이해하기](https://devjin-blog.com/yolo-part1/)<br/>
+&nbsp;2. [Part 2 : 네트워크 구조의 layers들 구현하기](https://devjin-blog.com/yolo-part2/)<br/>
+&nbsp;3. [Part 3 : 네트워크의 forward pass 구현하기](https://devjin-blog.com/yolo-part3/)<br/>
+&nbsp;4. Part 4 : Objectness 점수 thresholding과 non-maximum suppression(NMS)<br/>
+&nbsp;5. [Part 5 : 입력과 출력 pipeline 디자인하기](https://devjin-blog.com/yolo-part5/)<br/>
 <br/>
 
 # 사전에 알아야할 지식
@@ -265,7 +265,7 @@ Output tensor는 이전에도 언급했듯이 detection이 없으면 initialize�
         return 0
 ```
 
-이걸로 Part4가 마무리 됐다. 우리는 이제 tensor 형태의 prediction 결과(행의 결과를 리스트 형식을 만든 형태)를 얻을 수 있게 되었다. 이제 남은 것은 입력 pipeline을 만들어서 디스크에서 이미지를 읽고, prediction을 계산하고, 이미지에 bounding box를 그리고나서 이미지를 보여주는 것이다. 다음 [Part5](https://dojinkimm.github.io/computer_vision/2019/08/07/yolo-part5.html)에서 해당 내용을 찾아볼 수 있다.
+이걸로 Part4가 마무리 됐다. 우리는 이제 tensor 형태의 prediction 결과(행의 결과를 리스트 형식을 만든 형태)를 얻을 수 있게 되었다. 이제 남은 것은 입력 pipeline을 만들어서 디스크에서 이미지를 읽고, prediction을 계산하고, 이미지에 bounding box를 그리고나서 이미지를 보여주는 것이다. 다음 [Part5](https://devjin-blog.com/yolo-part5/)에서 해당 내용을 찾아볼 수 있다.
 
 ### **Further Reading**
 
