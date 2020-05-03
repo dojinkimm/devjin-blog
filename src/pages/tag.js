@@ -56,7 +56,7 @@ const TagPage = props => {
             {tagList.map(item => (
               <section key={item[0]}>
                 <h2>
-                  <FaTag /> {item[0]}
+                  <FaTag /> {item[0]} ({item[1].length})
                 </h2>
                 <List edges={item[1]} theme={theme} />
               </section>
