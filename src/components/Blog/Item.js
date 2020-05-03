@@ -18,7 +18,6 @@ const Item = props => {
       frontmatter: {
         title,
         tags,
-        author,
         cover: {
           children: [{ fluid }],
         },
@@ -51,9 +50,6 @@ const Item = props => {
           <p className="meta">
             <span>
               <FaCalendar size={18} /> {prefix}
-            </span>
-            <span>
-              <FaUser size={18} /> {author}
             </span>
             <span>
               <FaRegClock size={18} /> {timeToRead} min.
