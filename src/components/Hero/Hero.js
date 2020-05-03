@@ -9,7 +9,7 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1> &#128036; 주니어 개발자의 <a href="#" target="_blank" className="subtitle" rel="noreferrer">  Dev </a> &nbsp;블로그</h1>
+        <h1> &#128035; 주니어 개발자의 <a href="#" target="_blank" className="subtitle" rel="noreferrer">  Dev </a> &nbsp;블로그</h1>
         <button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
         </button>
