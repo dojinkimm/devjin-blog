@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { FiFacebook, FiGithub, FiLinkedin, FiMail, FiGlobe } from 'react-icons/fi';
 import './bio.scss';
-import { ColorMode } from 'theme-ui';
 const config = require('../../../config');
 
 const Bio = () => {

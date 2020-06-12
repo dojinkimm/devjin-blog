@@ -13,7 +13,7 @@ module.exports = {
   // If the file does not exist, it is replaced by a random image.
 
   /** Home > Bio information*/
-  comment: 'Junior Server Developer',
+  comment: 'Junior Server Developer @Rainist',
   name: 'Dojin Kim',
   company: '@Rainist',
   location: 'Korea',

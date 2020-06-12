@@ -1,6 +1,7 @@
 .bio {
-  min-width: 25rem;
-  width: 25rem;
+  min-width: 20vw;
+  width: 20vw;
+  min-height: 10vh;
   margin-left: 2rem;
 
   p,
@@ -52,8 +53,16 @@
     margin-left: 0.2rem;
     margin-top: 2rem;
     align-self: start;
-    justify-content: center;
+    justify-content: start;
     justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+
+    // display: 'grid',
+    // gridGap: 16,
+    // gridTemplateColumns: 'repeat(4, auto)',
+    // justifyItems: 'center',
+    // justifyContent: 'start',
 
     a {
       display: inline-flex;
