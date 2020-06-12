@@ -71,7 +71,7 @@ const Post = (props: postProps) => {
     const yPositions = hs.map(h => h.offsetTop - minusValue);
     setYList(yPositions);
 
-    return () => {};
+    return () => { };
   }, []);
 
   useEffect(() => {
@@ -176,8 +176,8 @@ const Post = (props: postProps) => {
   },
   "headline": "${title}",
   ${
-    config.profileImageFileName
-      ? `"publisher": {
+            config.profileImageFileName
+              ? `"publisher": {
     "@type" : "organization",
     "name" : "${config.name}",
     "logo": {
@@ -186,12 +186,12 @@ const Post = (props: postProps) => {
     }
   },
   "image": ["${config.siteUrl}${require(`../images/${config.profileImageFileName}`)}"]`
-      : `"publisher": {
+              : `"publisher": {
     "@type" : "organization",
     "name" : "${config.name}"
   },
   "image": []`
-  }
+            }
 }
 `}
         </script>
@@ -202,16 +202,17 @@ const Post = (props: postProps) => {
       <Layout>
         <div className="blog-post-container">
           <div className="blog-post">
-          <div className="date-wrap">
-                <span className="write-date">{date}</span>       <FiCoffee/>
-                {update ? (
-                  <>
-                    <span>(</span>
-                    <span className="update-date">{`Last updated: ${update}`}</span>
-                    <span>)</span>
-                  </>
-                ) : null}
-              </div>
+            <div className="date-wrap">
+              <span className="write-date">{date}</span>
+              <FiCoffee />
+              {update ? (
+                <>
+                  <span>(</span>
+                  <span className="update-date">{`Last updated: ${update}`}</span>
+                  <span>)</span>
+                </>
+              ) : null}
+            </div>
             <h1 className="blog-post-title">{title}</h1>
 
             <div className="blog-post-info">
@@ -313,24 +314,24 @@ const Post = (props: postProps) => {
               ) : null}
             </>
           ) : (
-            <>
-              <aside className="ad">
-                <AdSense.Google
-                  client={config.googleAdsenseClient || 'ca-pub-5001380215831339'}
-                  slot={config.googleAdsenseSlot || '5214956675'}
-                  style={{ display: 'block' }}
-                  format="auto"
-                  responsive="true"
-                />
-              </aside>
+              <>
+                <aside className="ad">
+                  <AdSense.Google
+                    client={config.googleAdsenseClient || 'ca-pub-5001380215831339'}
+                    slot={config.googleAdsenseSlot || '5214956675'}
+                    style={{ display: 'block' }}
+                    format="auto"
+                    responsive="true"
+                  />
+                </aside>
 
-              {isDisqus ? (
-                <div className="comments">
-                  <DiscussionEmbed {...disqusConfig} />
-                </div>
-              ) : null}
-            </>
-          )}
+                {isDisqus ? (
+                  <div className="comments">
+                    <DiscussionEmbed {...disqusConfig} />
+                  </div>
+                ) : null}
+              </>
+            )}
         </div>
 
         {!isTableOfContents ? null : <Toc isOutside={true} toc={tableOfContents} />}
