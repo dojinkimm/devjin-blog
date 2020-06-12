@@ -1,154 +1,59 @@
-require('dotenv').config()
-const config = require('./content/meta/config')
+const config = require('./config');
+const { title, description, author, googleAnalytics, siteUrl } = config;
 
-const query = `{
-  allMdx(
-    filter: {
-      fields: { slug: { ne: null } },
-      fileAbsolutePath: { regex: "/posts/"},
-      frontmatter: { published: { eq: true } }
-    }
-  ) {
-    edges {
-      node {
-        objectID: fileAbsolutePath
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-          tags
-        }
-        internal {
-          content
-        }
-      }
-    }
-  }
-}`
+const gatsbyConfig = {
+  siteMetadata: { title, description, author, siteUrl },
 
-const queries = [
-  {
-    query,
-    transformer: ({ data }) => {
-      return data.allMdx.edges.reduce(transformer, [])
-    },
-  },
-]
-
-module.exports = {
-  siteMetadata: {
-    title: config.siteTitle,
-    description: config.siteDescription,
-    siteUrl: config.siteUrl,
-    facebook: {
-      appId: process.env.FB_APP_ID ? process.env.FB_APP_ID : '',
-    },
-  },
   plugins: [
-    `gatsby-plugin-styled-jsx`, // the plugin's code is inserted directly to gatsby-node.js and gatsby-ssr.js files
-    `gatsby-plugin-styled-jsx-postcss`, // as above
     {
-      resolve: `gatsby-plugin-layout`,
+      resolve: `gatsby-plugin-google-analytics`,
       options: {
-        component: require.resolve(`./src/layouts/`),
+        trackingId: googleAnalytics,
       },
     },
-    'gatsby-transformer-json',
+
+    `gatsby-plugin-react-helmet`,
+
+    `gatsby-plugin-typescript`,
+
+    `gatsby-plugin-theme-ui`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `data`,
-        path: `${__dirname}/src/data/`,
+        name: `markdown-pages`,
+        path: `${__dirname}/_posts`,
       },
     },
+
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-transformer-remark`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/posts/`,
-        name: 'posts',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/pages/`,
-        name: 'pages',
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `parts`,
-        path: `${__dirname}/content/parts/`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-        defaultLayouts: {
-          posts: require.resolve('./src/templates/PostTemplate.js'),
-          page: require.resolve('./src/templates/PageTemplate.js'),
-          tags: require.resolve('./src/templates/TagTemplate.js'),
+        tableOfContents: {
+          maxDepth: 3,
         },
-        gatsbyRemarkPlugins: [
+        plugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 800,
-            },
-          },
-          `gatsby-plugin-sharp`,
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 800,
-              backgroundColor: 'transparent',
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 2em`,
+              maxWidth: 590,
             },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              inlineCodeMarker: '›',
-              aliases: { js: 'javascript', sh: 'bash' },
               classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: false,
-              noInlineHighlight: false,
-              prompt: {
-                user: 'root',
-                host: 'localhost',
-                global: false,
-              },
             },
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
           {
             resolve: 'gatsby-remark-emojis',
             options: {
-              // Deactivate the plugin globally (default: true)
               active: true,
-              // Add a custom css class
               class: 'emoji-icon',
-              // Select the size (available size: 16, 24, 32, 64)
               size: 64,
-              // Add custom styles
               styles: {
                 display: 'inline',
                 margin: '0',
@@ -159,76 +64,94 @@ module.exports = {
               },
             },
           },
+          `gatsby-remark-autolink-headers`,
+          `gatsby-remark-katex`,
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+            },
+          },
         ],
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-helmet`,
+
     {
-      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        siteUrl: 'https://devjin-blog.com',
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-catch-links`,
+
+    `gatsby-transformer-sharp`,
+
+    `gatsby-plugin-sharp`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: config.manifestName,
-        short_name: config.manifestShortName,
-        start_url: config.manifestStartUrl,
-        background_color: config.manifestBackgroundColor,
-        theme_color: config.manifestThemeColor,
-        display: config.manifestDisplay,
-        icons: [
-          {
-            src: '/icons/icon-48x48.png',
-            sizes: '48x48',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-96x96.png',
-            sizes: '96x96',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-144x144.png',
-            sizes: '144x144',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
+        name: title,
+        short_name: title,
+        description: description,
+        start_url: `/`,
+        lang: 'ko',
+        background_color: `#fff`,
+        theme_color: `#fff`,
+        display: `standalone`,
+        icon: 'src/images/icon.png',
+        legacy: false,
+        include_favicon: false,
       },
     },
-    `gatsby-plugin-offline`,
+
+    `gatsby-plugin-sass`,
+
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-typography`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        pathToConfigModule: `src/utils/typography.ts`,
       },
     },
+
     {
-      resolve: `gatsby-plugin-feed-mdx`,
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        query: `
+          {
+          site {
+              siteMetadata {
+                  siteUrl
+              }
+          }
+
+          allSitePage {
+            edges {
+              node {
+                path
+                context {
+                  lastmod
+                }
+              }
+            }
+          }
+      }`,
+        serialize: ({ site, allSitePage }) => {
+          return allSitePage.edges.map(edge => {
+            return {
+              url: site.siteMetadata.siteUrl + edge.node.path,
+              changefreq: `daily`,
+              lastmod: edge.node.context.lastmod,
+              priority: 0.7,
+            };
+          });
+        },
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-feed`,
       options: {
         query: `
           {
@@ -244,52 +167,30 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
-                  date: edge.node.fields.prefix,
-                  categories: edge.node.frontmatter.tags,
+                  date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [
-                    {
-                      'content:encoded': edge.node.html,
-                    },
-                    {
-                      'content:tags': formatTags(edge.node.frontmatter.tags),
-                    },
-                  ],
-                })
-              })
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                });
+              });
             },
             query: `
               {
-                allMdx(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [fields___prefix] },
-                  filter: {
-                    fields: {
-                      prefix: { ne: null },
-                      slug: { ne: null }
-                    },
-                    frontmatter: {
-                      author: { ne: null },
-                      published: { eq: true}
-                    }
-                  }
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] }, limit: 10
                 ) {
                   edges {
                     node {
                       excerpt
                       html
-                      fields {
-                        slug
-                        prefix
-                      }
+                      fields { slug }
                       frontmatter {
                         title
-                        tags
+                        date
                       }
                     }
                   }
@@ -297,33 +198,30 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Devjin's RSS Feed",
+            title: `${title} | Feed`,
           },
         ],
       },
     },
     {
-      resolve: `gatsby-plugin-sitemap`,
-    },
-    {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://devjin-blog.com/',
-        sitemap: 'https://devjin-blog.com/sitemap.xml',
+        host: siteUrl,
+        sitemap: `${siteUrl}${siteUrl[siteUrl.length - 1] !== '/' ? '/' : ''}sitemap.xml`,
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        include: /svg-icons/,
-      },
-    },
   ],
+};
+
+if (process.env.NODE_ENV === 'development') {
+  gatsbyConfig.plugins.push({
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      path: `${__dirname}/_drafts`,
+      name: 'markdown-pages',
+    },
+  });
 }
 
-const formatTags = tags => {
-  return tags.reduce(function(prevVal, currVal, idx) {
-    return idx == 0 ? `#${currVal}` : prevVal + ' #' + currVal
-  }, '')
-}
+module.exports = gatsbyConfig;

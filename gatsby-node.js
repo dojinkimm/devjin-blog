@@ -1,180 +1,156 @@
-//const webpack = require("webpack");
-const _ = require('lodash')
-const path = require('path')
-const Promise = require('bluebird')
+const path = require(`path`);
+const { createFilePath } = require('gatsby-source-filesystem');
+const config = require('./config');
 
-const { createFilePath } = require(`gatsby-source-filesystem`)
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    const slug = createFilePath({ node, getNode })
-    const fileNode = getNode(node.parent)
-    const source = fileNode.sourceInstanceName
-    const separtorIndex = ~slug.indexOf('--') ? slug.indexOf('--') : 0
-    const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0
-
-    if (source !== 'parts') {
-      createNodeField({
-        node,
-        name: `slug`,
-        value: `${separtorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`,
-      })
-    }
-    createNodeField({
-      node,
-      name: `prefix`,
-      value: separtorIndex ? slug.substring(1, separtorIndex) : '',
-    })
-    createNodeField({
-      node,
-      name: `source`,
-      value: source,
-    })
-  }
-}
-
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-
-  return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve('./src/templates/PostTemplate.js')
-    const pageTemplate = path.resolve('./src/templates/PageTemplate.js')
-    const tagTemplate = path.resolve('./src/templates/TagTemplate.js')
-
-    resolve(
-      graphql(
-        `
-          {
-            allMdx(
-              filter: { fields: { slug: { ne: null } }, frontmatter: { published: { eq: true } } }
-              sort: { fields: [fields___prefix], order: DESC }
-              limit: 1000
-            ) {
-              edges {
-                node {
-                  id
-                  fields {
-                    slug
-                    prefix
-                    source
-                  }
-                  frontmatter {
-                    title
-                    tags
-                  }
-                }
-              }
+// Create Pages
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+  const blogPostTemplate = path.resolve(`src/templates/Post.tsx`);
+  const result = await graphql(`
+    {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              tags
+              update(formatString: "YYYY-MM-DD")
+              date(formatString: "YYYY-MM-DD")
             }
           }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
+
+  const getSeries = target => {
+    const splitedSlug = target.split('_');
+    if (splitedSlug.length >= 3) return 0;
+
+    const seriesNum = splitedSlug[splitedSlug.length - 1].split('/').join('');
+    const isNum = !/[^0-9]/g.test(seriesNum);
+
+    if (isNum) return parseInt(seriesNum, 10);
+    return 0;
+  };
+
+  const { edges } = result.data.allMarkdownRemark;
+
+  edges.forEach(({ node }, index) => {
+    const { fields, frontmatter } = node;
+    const { slug } = fields;
+    const { date, update } = frontmatter;
+
+    // series
+    let filteredEdges = [];
+    const series = [];
+
+    if (getSeries(slug)) {
+      filteredEdges = edges.filter(e => {
+        const fSlug = e.node.fields.slug;
+        const splitedFSlug = fSlug.split('_');
+        if (splitedFSlug.length >= 3) return false;
+
+        if (slug.split('_').length > 1 && slug.split('_')[0] === splitedFSlug[0]) {
+          return true;
+        }
+      });
+
+      if (filteredEdges.length) {
+        for (const e of filteredEdges) {
+          const seriesNum = getSeries(e.node.fields.slug);
+
+          if (seriesNum) {
+            series.push({
+              slug: e.node.fields.slug,
+              title: e.node.frontmatter.title,
+              num: seriesNum,
+            });
+          }
         }
 
-        const items = result.data.allMdx.edges
+        series.sort((a, b) => {
+          return a.num - b.num;
+        });
+      }
+    }
 
-        // Create tag list
-        const tagSet = new Set()
-        items.forEach(edge => {
-          const {
-            node: {
-              frontmatter: { tags },
-            },
-          } = edge
+    createPage({
+      path: slug,
+      component: blogPostTemplate,
+      context: { slug, series, lastmod: update ? update : date },
+    });
+  });
+};
 
-          if (tags && tags != null) {
-            tags.forEach(tag => {
-              if (tag && tag !== null) {
-                tagSet.add(tag)
-              }
-            })
-          }
-        })
+// Create Nodes
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
 
-        // Create tag pages
-        const tagList = Array.from(tagSet)
-        tagList.forEach(tag => {
-          createPage({
-            path: `/tag/${_.kebabCase(tag)}/`,
-            component: tagTemplate,
-            context: {
-              tag,
-            },
-          })
-        })
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
 
-        // Create posts
-        const posts = items.filter(item => item.node.fields.source === 'posts')
-        posts.forEach(({ node }, index) => {
-          const slug = node.fields.slug
-          const next = index === 0 ? undefined : posts[index - 1].node
-          const prev = index === posts.length - 1 ? undefined : posts[index + 1].node
-          const source = node.fields.source
+    const rewriteSlug = slug => {
+      // 폴더 경로에 따라 url에 표시되는 것을 폴더 경로를 제거하고 파일명으로만 url을 지정되도록 하기 위함
+      if (slug.match(/\//g).length > 2) {
+        let tempStr = slug.split('/');
+        slug = `/${tempStr[tempStr.length - 2]}/`;
+      }
 
-          createPage({
-            path: slug,
-            component: postTemplate,
-            context: {
-              slug,
-              prev,
-              next,
-              source,
-            },
-          })
-        })
+      // jekyll 기준으로 파일명에 날짜를 포함시키던 것을 url에서 제거하기 위함
+      const dayRegExp = /\/(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-/;
+      if (slug.match(dayRegExp)) {
+        slug = '/' + slug.replace(dayRegExp, '');
+      }
 
-        // and pages.
-        const pages = items.filter(item => item.node.fields.source === 'pages')
-        pages.forEach(({ node }) => {
-          const slug = node.fields.slug
-          const source = node.fields.source
+      return slug;
+    };
 
-          createPage({
-            path: slug,
-            component: pageTemplate,
-            context: {
-              slug,
-              source,
-            },
-          })
-        })
+    const rewriteNode = node => {
+      // 마크다운 파일 내 keywords 필드가 비어있을 시 오류가 나지 않도록 하기 위함
+      if (!node.frontmatter.keywords) {
+        node.frontmatter.keywords = [config.title, config.author];
+      }
 
-        // Create blog post list pages
-        const postsPerPage = 5
-        const numPages = Math.ceil(posts.length / postsPerPage)
+      // 마크다운 파일 내 태그 필드가 비어있을 시 오류가 나지 않도록 하기 위함
+      if (!node.frontmatter.tags || node.frontmatter.tags === '') {
+        node.frontmatter.tags = ['undefined'];
+      }
+      // 태그 필드가 배열이 아닌 문자열 하나일때 배열로 덮음
+      else if (typeof node.frontmatter.tags === 'string') {
+        node.frontmatter.tags = [node.frontmatter.tags];
+      }
 
-        _.times(numPages, i => {
-          createPage({
-            path: i === 0 ? `/` : `/${i + 1}`,
-            component: path.resolve('./src/templates/index.js'),
-            context: {
-              limit: postsPerPage,
-              skip: i * postsPerPage,
-              numPages,
-              currentPage: i + 1,
-            },
-          })
-        })
-      })
-    )
-  })
-}
+      // markdown 내 date의 timezone 제거
+      if (node.frontmatter.date.includes('+')) {
+        date = new Date(node.frontmatter.date.split('+')[0]);
+        node.frontmatter.date = date;
+      } else {
+        node.frontmatter.date = new Date(node.frontmatter.date);
+      }
 
-exports.onCreateWebpackConfig = ({ stage, actions, loaders }, options) => {
-  switch (stage) {
-    case `build-javascript`:
-    // actions.setWebpackConfig({
-    //   module: {
-    //     rules: [
-    //       {
-    //         test: /\.css$/,
-    //         use: [loaders.style(), loaders.css({ importLoaders: 1 }), loaders.postcss()],
-    //       },
-    //     ],
-    //   },
-    // })
+      if (!node.frontmatter.update) {
+        node.frontmatter.update = '0001-01-01T00:00:00.000Z';
+      }
+
+      return node;
+    };
+
+    const newSlug = rewriteSlug(slug);
+    const newNode = rewriteNode(node);
+
+    createNodeField({
+      name: `slug`,
+      node: newNode,
+      value: newSlug,
+    });
   }
-}
+};
