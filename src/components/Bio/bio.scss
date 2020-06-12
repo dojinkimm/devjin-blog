@@ -43,25 +43,6 @@
     }
   }
 
-  .buttons{
-    display: grid;
-    grid-gap: 16;
-    grid-template-columns: repeat(4, auto);
-    justify-items: center;
-    justify-content: start;
-  }
-
-  .button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid black;
-    padding: 16;
-    background: transparent;
-    cursor: pointer;
-    color: inherit;
-}
 
   .comment {
     margin-bottom: 1rem;
@@ -70,37 +51,24 @@
   .social {
     margin-left: 0.2rem;
     margin-top: 2rem;
+    align-self: start;
+    justify-content: center;
+    justify-items: center;
 
     a {
       display: inline-flex;
       font-size: 1.3rem;
-      margin-right: 0.5rem;
-
-      .linkedin,
-      .facebook,
-      .instagram,
-      .github,
-      .rss {
-        transition: color 0.3s;
-      }
-
-      &:hover {
-        .rss {
-          color: rgb(226, 143, 72) !important;
-        }
-        .linkedin {
-          color: #0077b5 !important;
-        }
-        .facebook {
-          color: #1877f2 !important;
-        }
-        .instagram {
-          color: #e4405f !important;
-        }
-        .github {
-          // color: #181717 !important;
-          color: #666666 !important;
-        }
+      margin-right: 1rem;
+      padding: 0.75rem;
+      border-radius: 50%;
+      background: transparent,;
+      border: 1px solid #DCDCDC;
+      color: 'inherit';
+      
+      &:hover, &:focus {
+        outline:0;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+        border-color: #F0F0F0;
       }
     }
   }

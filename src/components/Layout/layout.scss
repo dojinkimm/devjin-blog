@@ -9,6 +9,9 @@ a {
   svg {
     color: #6a737d;
     transition: color 0.8s;
+    &:hover, &:focus {
+      color: #2874A6;
+    }
   }
 
   &.light {

@@ -15,7 +15,7 @@ module.exports = {
   /** Home > Bio information*/
   comment: 'Junior Server Developer',
   name: 'Dojin Kim',
-  company: '',
+  company: '@Rainist',
   location: 'Korea',
   email: 'dojinkim119@gmail.com',
   website: 'https://devjin-blog.com',

@@ -1,43 +1,31 @@
 import * as React from 'react';
-import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { FiFacebook, FiGithub, FiLinkedin, FiMail, FiGlobe } from 'react-icons/fi';
 import './bio.scss';
+import { ColorMode } from 'theme-ui';
 const config = require('../../../config');
 
 const Bio = () => {
-  const { comment, name, company, email, website, linkedin, facebook, github } = config;
+  const { comment, email, website, linkedin, facebook, github } = config;
 
   return (
     <div className="bio">
       {!comment ? null : <span className="comment">{comment}</span>}
 
-      {!company ? null : (
-        <div className="bio-item company">
-          <div className="icon-wrap">
-            <Fa icon={faAddressCard} />
-          </div>
-          <span>{company}</span>
-        </div>
-      )}
-
-      <div className="buttons">
-        <div className="button">
+      <div className="social">
         <a href={linkedin} target="_blank">
-          <FiLinkedin />
+          <FiLinkedin className="icon"/>
         </a>
-        </div>
         <a href={github} target="_blank">
-          <FiGithub />
+          <FiGithub className="icon"/>
         </a>
         <a href={facebook} target="_blank">
           <FiFacebook />
         </a>
         <a href={email} target="_blank">
-          <FiMail />
+          <FiMail className="icon"/>
         </a>
         <a href={website} target="_blank">
-          <FiGlobe />
+          <FiGlobe className="icon"/>
         </a>
       </div>
     </div>
