@@ -12,8 +12,6 @@ keywords:
 
 <h2>Part 1 - YOLO가 어떻게 작동되는지 이해하기</h2>
 
-#### 영어를 대체할만한 제대로 된 한국어를 찾지 못한 경우에는 그대로 영어로 작성했다는 것을 참고해주세요. 도움을 위해 한 번씩 영어 옆에 한국어로 괄호로 작성했습니다 :)
-<br/>
 
 > Opencv DNN, Tensorflow, Pytorch로 YOLO v3를 구현해본 코드를 보려면 [Github repo](https://github.com/dojinkimm/Object_Detection_Video_DNN_Tensorflow_Pytorch) 를 참고하세요. 
 

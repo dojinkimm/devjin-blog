@@ -8,11 +8,16 @@
     margin: 0 auto;
   }
 
+
   .blog-post {
-    padding: 1rem;
 
     a {
-      text-decoration-line: underline;
+      border-bottom: 1px dashed #999;;
+      color: #707070;
+      &:hover, &:focus{
+        color: black;
+        border-bottom: 1px solid #999;;
+      }
     }
 
     .blog-post-title {

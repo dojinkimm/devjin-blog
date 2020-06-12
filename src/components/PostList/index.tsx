@@ -2,6 +2,7 @@ import * as React from 'react';
 import { memo, useEffect, useState, useCallback } from 'react';
 import { Link } from 'gatsby';
 import { throttle } from 'lodash';
+import { FiCoffee } from 'react-icons/fi';
 
 import './postList.scss';
 
@@ -58,7 +59,7 @@ const PostList = memo((props: PostListProps) => {
       return (
         <li key={`${slug}-${tag}`} className="tag">
           <span>
-            <Link to={`/tags#${tag}`}>{`#${tag}`}</Link>
+            <Link to={`/tags#${tag}`} className="link">{`#${tag}`}</Link>
           </span>
         </li>
       );
@@ -66,20 +67,19 @@ const PostList = memo((props: PostListProps) => {
 
     return (
       <li key={slug} className={`post ${i < showCnt ? 'show' : 'hide'}`}>
+        <div className="date">
+          <small> {date} </small>
+          <FiCoffee/>
+        </div>
         <article>
           <h2 className="title">
-            <Link to={slug}>{title}</Link>
+            <Link to={slug} className="link">{title}</Link>
           </h2>
           <div className="info">
-            <div className="date-wrap">
-              <span className="date">{date}</span>
-              {update ? <span className="update">&nbsp;{`(Updated: ${update})`}</span> : null}
-            </div>
-            {tags.length && tags[0] !== 'undefined' ? <span className="info-dot">·</span> : null}
             <ul className="tag-list">{mapTag}</ul>
           </div>
           <span className="excerpt">
-            <Link to={slug}>{excerpt}</Link>
+            <Link to={slug} className="link">{excerpt}</Link>
           </span>
         </article>
       </li>

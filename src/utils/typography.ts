@@ -9,18 +9,20 @@ const typography = new Typography({
 
 const googleFonts: { name: string; bold?: number[] }[] = [
   {
-    name: 'Nanum Gothic',
+    name: 'BlinkMacSystemFont',
     bold: [400, 700],
   },
   {
-    name: 'Nanum Gothic Coding',
+    name: 'Segoe UI',
     bold: [400, 700],
   },
   {
-    name: 'Noto Serif KR',
+    name: 'Roboto',
     bold: [300, 400, 700],
   },
-  { name: 'Raleway' },
+  { name: 'Oxygen-Sans' },
+  { name: 'Ubuntu' },
+  { name: 'Cantarell' },
 ];
 
 const googleFont = googleFonts

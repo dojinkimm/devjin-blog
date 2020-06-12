@@ -8,6 +8,7 @@ import moment from 'moment';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import { faListUl, faLayerGroup, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import AdSense from 'react-adsense';
+import { FiCoffee } from 'react-icons/fi';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -201,11 +202,8 @@ const Post = (props: postProps) => {
       <Layout>
         <div className="blog-post-container">
           <div className="blog-post">
-            <h1 className="blog-post-title">{title}</h1>
-
-            <div className="blog-post-info">
-              <div className="date-wrap">
-                <span className="write-date">{date}</span>
+          <div className="date-wrap">
+                <span className="write-date">{date}</span>       <FiCoffee/>
                 {update ? (
                   <>
                     <span>(</span>
@@ -214,10 +212,12 @@ const Post = (props: postProps) => {
                   </>
                 ) : null}
               </div>
+            <h1 className="blog-post-title">{title}</h1>
+
+            <div className="blog-post-info">
 
               {tags.length && tags[0] !== 'undefined' ? (
                 <>
-                  <span className="dot">·</span>
                   <ul className="blog-post-tag-list">{mapTags}</ul>
                 </>
               ) : null}
