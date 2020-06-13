@@ -1,4 +1,4 @@
-@import '../../utils/variables.scss';
+@import "../../utils/variables.scss";
 
 a {
   all: unset;
@@ -8,9 +8,9 @@ a {
 #layout {
   svg {
     color: #6a737d;
-    transition: color 0.8s;
-    &:hover, &:focus {
-      color: #2874A6;
+    &:hover,
+    &:focus {
+      color: #2874a6;
     }
   }
 
@@ -20,11 +20,29 @@ a {
         background-color: $background-color;
       }
     }
+
+    a {
+      color: #606060;
+      &:hover, &:focus{
+        color: black;
+      }
+    }
   }
 
   &.dark {
     svg {
       color: #a3aab3;
+      &:hover,
+      &:focus {
+        color: #2874a6;
+      }
+    }
+
+    a {
+      color: #C8C8C8;
+      &:hover, &:focus{
+        color: white;
+      }
     }
 
     @media screen and (max-width: $break-l) {

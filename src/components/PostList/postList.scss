@@ -13,6 +13,7 @@
     list-style: none;
   }
 
+
   .post {
     display: flex;
     flex-direction: column;
@@ -47,15 +48,6 @@
 
       @media screen and (max-width: $break-m) {
         font-size: 1.1rem;
-      }
-    }
-
-    .link {
-      color: #404040;
-
-      &hover,
-      &focus {
-        color: black;
       }
     }
 
