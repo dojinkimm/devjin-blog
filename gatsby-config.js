@@ -45,7 +45,7 @@ const gatsbyConfig = {
               classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: false,
+              showLineNumbers: true,
             },
           },
           {
