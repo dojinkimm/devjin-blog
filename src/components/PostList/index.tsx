@@ -2,7 +2,6 @@ import * as React from 'react';
 import { memo, useEffect, useState, useCallback } from 'react';
 import { Link } from 'gatsby';
 import { throttle } from 'lodash';
-import { FiCoffee } from 'react-icons/fi';
 
 import './postList.scss';
 
@@ -50,6 +49,8 @@ const PostList = memo((props: PostListProps) => {
     const { excerpt, fields, frontmatter } = node;
     const { slug } = fields;
     const { date, title, tags } = frontmatter;
+    const {timeToRead} = node;
+    console.log(node);
     let update = frontmatter.update;
     if (Number(update.split(',')[1]) === 1) update = null;
 
@@ -68,8 +69,7 @@ const PostList = memo((props: PostListProps) => {
     return (
       <li key={slug} className={`post ${i < showCnt ? 'show' : 'hide'}`}>
         <div className="date">
-          <small> {date} </small>
-          <FiCoffee/>
+          <small> {date} •{timeToRead} min read  ☕ </small>
         </div>
         <article>
           <h2 className="title">

@@ -42,10 +42,10 @@ const gatsbyConfig = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: 'language-',
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: true,
+              // classPrefix: 'language-',
+              // inlineCodeMarker: null,
+              // aliases: {},
+              // showLineNumbers: false,
             },
           },
           {

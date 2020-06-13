@@ -45,6 +45,7 @@ const Post = (props: postProps) => {
   const { markdownRemark } = data;
   const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
   const { title, date, tags, keywords } = frontmatter;
+  const { timeToRead } = markdownRemark;
   let update = frontmatter.update;
   if (Number(update?.split(',')[1]) === 1) update = null;
   const { slug } = fields;
@@ -203,8 +204,7 @@ const Post = (props: postProps) => {
         <div className="blog-post-container">
           <div className="blog-post">
             <div className="date-wrap">
-              <span className="write-date">{date}</span>
-              <FiCoffee />
+              <span className="write-date">{date} •{timeToRead} min read  ☕</span>
               {update ? (
                 <>
                   <span>(</span>
@@ -356,6 +356,7 @@ export const pageQuery = graphql`
         keywords
         update(formatString: "MMM DD, YYYY")
       }
+      timeToRead
     }
   }
 `;
