@@ -1,5 +1,5 @@
 ---
-title: "Quick Sort, 퀵 정렬이란?"
+title: 💻 Quick Sort, 퀵 정렬이란?
 date: 2019-09-15
 tags:
   - algorithm

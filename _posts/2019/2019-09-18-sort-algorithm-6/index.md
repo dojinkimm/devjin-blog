@@ -1,5 +1,5 @@
 ---
-title: "Merge Sort, 합병 정렬이란?"
+title: 💻 Merge Sort, 합병 정렬이란?
 date: 2019-09-18
 tags:
   - algorithm

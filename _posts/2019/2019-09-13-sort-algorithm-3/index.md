@@ -1,5 +1,5 @@
 ---
-title: "Insertion Sort, 삽입 정렬이란?"
+title: 💻 Insertion Sort, 삽입 정렬이란?
 date: 2019-09-13
 tags:
   - algorithm

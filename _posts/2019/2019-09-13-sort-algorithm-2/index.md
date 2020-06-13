@@ -1,5 +1,5 @@
 ---
-title:  "Selection Sort, 선택 정렬이란?"
+title:  💻 Selection Sort, 선택 정렬이란?
 date: 2019-09-13
 tags:
   - algorithm

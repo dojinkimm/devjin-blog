@@ -1,5 +1,5 @@
 ---
-title:  "Stable Sort, inplace algorithm이란? 왜 중요한가?"
+title:  💻 Stable Sort, inplace algorithm이란? 왜 중요한가?
 date: 2019-09-10
 tags:
   - algorithm

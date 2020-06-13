@@ -1,5 +1,5 @@
 ---
-title: "Counting Sort, 계수 정렬이란?"
+title: 💻 Counting Sort, 계수 정렬이란?
 date: 2019-09-22
 tags:
   - algorithm

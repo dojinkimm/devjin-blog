@@ -1,5 +1,5 @@
 ---
-title: "Bucket Sort, 버킷 정렬이란?"
+title: 💻 Bucket Sort, 버킷 정렬이란?
 date: 2019-09-28
 tags:
   - algorithm

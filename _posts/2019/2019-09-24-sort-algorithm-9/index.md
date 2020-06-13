@@ -1,5 +1,5 @@
 ---
-title: "Radix Sort, 기수 정렬이란?"
+title: 💻 Radix Sort, 기수 정렬이란?
 date: 2019-09-24
 tags:
   - algorithm

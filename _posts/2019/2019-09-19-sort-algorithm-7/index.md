@@ -1,5 +1,5 @@
 ---
-title: "Heap Sort, 힙 정렬이란?"
+title: 💻 Heap Sort, 힙 정렬이란?
 date: 2019-09-19
 tags:
   - algorithm

@@ -1,5 +1,5 @@
 ---
-title: "Bubble Sort, 버블 정렬이란?"
+title: 💻 Bubble Sort, 버블 정렬이란?
 date: 2019-09-14
 tags:
   - algorithm
