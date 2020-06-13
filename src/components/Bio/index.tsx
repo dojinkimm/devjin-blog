@@ -8,7 +8,7 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      {!comment ? null : <span className="comment">{comment}</span>}
+      {!comment ? null : <span className="comment"> 🔥 {comment} 🔥</span>}
 
       <div className="social">
         <a href={linkedin} target="_blank">

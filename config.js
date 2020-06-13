@@ -2,10 +2,8 @@ module.exports = {
   /** Site MetaData (Required all)*/
   title: `DevJin-Blog`,                           // (* Required)
   description: `DevJin-Blog`, // (* Required)
-  author: `Junho Baik`,                         // (* Required)
+  author: `Dojin Kim`,                         // (* Required)
   siteUrl: 'https://devjin-blog.com',       // (* Required) 
-  // ex.'https://junhobaik.github.io'
-  // ex.'https://junhobaik.github.io/' << X, Do not enter "/" at the end.
 
   /** Header */
   profileImageFileName: 'profile.png', // include filename extension ex.'profile.jpg'
@@ -19,8 +17,8 @@ module.exports = {
   location: 'Korea',
   email: 'dojinkim119@gmail.com',
   website: 'https://devjin-blog.com',
-  linkedin: '',                                     // ex.'https://www.linkedin.com/in/junho-baik-16073a19ab'
-  facebook: '',                                     // ex.'https://www.facebook.com/zuck' or 'https://www.facebook.com/profile.php?id=000000000000000'
+  linkedin: 'https://www.linkedin.com/in/dojin-henry-kim-64080a158/',    
+  facebook: 'https://www.facebook.com/dojin1',                                
   instagram: '',                                    // ex.'https://www.instagram.com/junhobaik'
   github: 'https://github.com/dojinkimm',
 
