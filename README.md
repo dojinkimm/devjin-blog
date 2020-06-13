@@ -1,51 +1,27 @@
-# Dev.White Blog
+# Devjin-Blog
 
-**[https://junhobaik.github.io](https://junhobaik.github.io)**
-
-<br/>
-
-[Junho Baik](https://github.com/junhobaik)의 개인 블로그이자,  
-Gatsby로 제작한 블로그 테마 "**Borderless**" 입니다. ([Gatsby Showcase | Borderless](https://www.gatsbyjs.org/showcase/junhobaik.github.io))
-
-커스터마이징하여 자신의 블로그로 사용할 수 있습니다.
-
-[Document (Borderless)](<https://github.com/junhobaik/junhobaik.github.io/wiki/Document-(Borderless)>)를 참고하세요.
+**[https://devjin-blog.com](https://devjin-blog.now.sh)** 
 
 <br/>
 
-[Gatsby](https://www.gatsbyjs.org/)를 이용해 제작한 블로그.  
-'Gatsby CLI'를 통해 빈 프로젝트로 구현을 시작하였습니다.
+[Junho Baik](https://github.com/junhobaik)님의 템플릿을 갖고와 조금 커스텀 작업을 진행했습니다. 
 
-**Built with:**
 
-- Gatsby
-- React
-- Redux
-- TypeScript
-- SASS (SCSS)
-- Typography.js
-- Google Fonts
-- Google Analytics
-- Google AdSense
-- ...
+## Content
 
-## "Borderless", Gatsby Blog Starter(Theme)
+하루하루 공부하고 있는 내용들을 공유할 예정입니다.
 
-Gatsby로 제작된 정적 웹사이트,  
-블로그 Borderless 테마입니다.
 
-이 문서에서는 기본적으로 Github Pages로 배포하는 것을 기준으로 작성하였습니다.
+## Getting Started
 
-**[Borderless DEMO WebSite](https://junhobaik.github.io)**
+Clone the repository and run:
 
-- 선(Border)이 없는, 색이 최소화된 심플한 디자인
-- 마크다운 게시물 작성 (Markdown + emoji, ktex)
-- 검색 엔진 최적화 (SEO), Chrome DevTools Audits SEO 100/100
-- 사파리 브라우저 등 게시물내 읽기 모드(Reader Mode) 지원
-- Google Analytics 지원
-- Google Adsense 지원
-- Disqus 댓글 기능 지원
+```text
+npm install
+```
 
-## Documents
+To run the local develop build run:
 
-자세한 가이드는 [Document(Borderless)](<https://github.com/junhobaik/junhobaik.github.io/wiki/Document-(Borderless)>)를 확인해주세요.
+```text
+gatsby develop
+```
