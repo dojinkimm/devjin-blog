@@ -16,9 +16,9 @@ Protobuf에서 message를 작성할 때 string 값을 `google.protobuf.StringVal
 
 `StringValue` 는 null이 될 수 있지만, `string`은 그럴 수 없는 경우가 많다. 예를 들어 Golang에서 string은 항상 "zero value"인 상황에 ""로 설정이 된다. 그렇기 때문에 
 
-- ### "의도적으로 비어있는 string으로 설정된 값의 경우"
+#### "의도적으로 비어있는 string으로 설정된 값의 경우"
 
-- ### "애초부터 값이 없었던 경우"
+#### "애초부터 값이 없었던 경우"
 
 를 구분할 수가 없다. 
 <br/>
