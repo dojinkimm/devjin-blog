@@ -317,7 +317,7 @@ const Post = (props: postProps) => {
               <>
                 <aside className="ad">
                   <AdSense.Google
-                    client={config.googleAdsenseClient || 'ca-pub-5001380215831339'}
+                    client={config.googleAdsenseClient || 'ca-pub-1867053081376792'}
                     slot={config.googleAdsenseSlot || '5214956675'}
                     style={{ display: 'block' }}
                     format="auto"
