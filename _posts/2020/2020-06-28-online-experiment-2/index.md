@@ -1,5 +1,5 @@
 ---
-title: 🏃‍♂️ [책 요약] Trustworthy Online Controlled Experiments - ch2 Running and Analyzing Experiments: an End-to-End Example
+title: 🏃‍♂️ [책 요약] Trustworthy Online Controlled Experiments - ch2 Running and Analyzing Experiments
 date: 2020-06-28
 tags:
   - online-controlled-experiment
