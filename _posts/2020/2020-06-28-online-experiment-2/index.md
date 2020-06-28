@@ -13,7 +13,7 @@ keywords:
 
 > 글에서 얘기하는 **실험**은 **online controlled experiment**를 의미한다. online controlled experiment은 때로 A/B 테스트라고도 불린다.
 
-📕1장에서는 실험이 무엇인지와 직감이 아닌 실제 데이터로 의사결정하는 것의 중요성에 대해서 알아봤다. 이번 포스트에서는 실험을 Design - Run -Analyze할때의 기본 원칙들을 살펴보려고 한다. 이 원칙들은 웹서버, 데스크탑 어플리케이션, 게임 콘솔, 모바일 어플리케이션 등 모든 소프트웨어에 적용된다.
+📕 1장에서는 실험이 무엇인지와 직감이 아닌 실제 **데이터로 의사결정하는 것의 중요성**에 대해서 알아봤다. 이번 포스트에서는 실험을 **Design - Run - Analyze할때의 기본 원칙들**을 살펴보려고 한다. 이 원칙들은 웹서버, 데스크탑 어플리케이션, 게임 콘솔, 모바일 어플리케이션 등 모든 소프트웨어에 적용될 수 있다.
 
 
 
@@ -41,15 +41,15 @@ OEC를 정하고 나서는 어떤 유저들을 이 실험에 포함시킬지 고
 
 #### Control(대조군)
 
-![스크린샷 2020-06-22 오후 10.25.11](/Users/dojin119/Downloads/스크린샷 2020-06-22 오후 10.25.11.png)
+![control](./control.png)
 
 #### Treatment1 (실험군 1)
 
-![스크린샷 2020-06-22 오후 10.24.49](/Users/dojin119/Downloads/스크린샷 2020-06-22 오후 10.24.49.png)
+![treatment!](./treatment1.png)
 
 #### Treatment2 (실험군 2)
 
-![image-20200622222953801](/Users/dojin119/Library/Application Support/typora-user-images/image-20200622222953801.png) 
+![treatment2](./treatment2.png)
 
 실험을 할 때 유저들을 3개의 그룹으로 나누려고 한다: control. treatment1, treatment2. Control은 대조군은, 즉, 기존에 변화가 없는 사이트를 보는 유저들을 의미한다.
 
@@ -97,21 +97,21 @@ OEC를 정하고 나서는 어떤 유저들을 이 실험에 포함시킬지 고
 
 예시대로 실험한 결과 다음의 결과가 나오게 되었다.
 
-![image-20200623232147007](/Users/dojin119/Library/Application Support/typora-user-images/image-20200623232147007.png)
+![result](./result.png)
 
 `p-value`가 0.05보다 낮기 때문에 control과 treatment의 평균이 같다는 Null hypothesis(귀무가설)을 기각한다. 통계적으로 `p-value`가 0.05미만이면 유의미한 결과라고 본다. 
 
 > **참고  블로그**
 >
-> 📎 [p-value란?](https://data-make.tistory.com/114)  
+> 📎  [p-value란?](https://data-make.tistory.com/114)  
 >
-> 📎 [귀무가설]([http://www.incodom.kr/%EA%B7%80%EB%AC%B4%EA%B0%80%EC%84%A4](http://www.incodom.kr/귀무가설))
+> 📎  [귀무가설]([http://www.incodom.kr/%EA%B7%80%EB%AC%B4%EA%B0%80%EC%84%A4](http://www.incodom.kr/귀무가설))
 
 즉, 쿠폰 입력칸을 결제 페이지에 추가하는 것은 매출을 실제로 하락시킨다는 것을 의미한다. Treatment 화면을 본 유저들이 control화면을 본 유저들보다 실제로 결제를 덜 했다는 것을 의미한다.
 
 🤦 마케팅 팀이 이메일로 유저들에게 쿠폰을 보내려고 했던 시도는 오히려 **매출에 악영향**을 끼칠 뻔 했던 것이다. 
 
-이와 같이 실험을 통해서 **데이터 드리븐 의사결정**을 할 수 있었다.  
+이와 같이 실험을 통해서 **데이터 드리븐 의사결정**을 할 수 있는 것이다.  
 
 
 
