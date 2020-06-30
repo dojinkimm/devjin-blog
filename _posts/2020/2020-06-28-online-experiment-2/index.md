@@ -115,5 +115,5 @@ OEC를 정하고 나서는 어떤 유저들을 이 실험에 포함시킬지 고
 
 
 
-✍️ 다음 포스트는 **Twyman's Law and Experimentation Trustworthiness**라는 내용을 요약하려고 한다.
+✍️ 다음 포스트는 **Experimentaion Platform and Culture**라는 내용을 요약하려고 한다.
 
