@@ -31,7 +31,7 @@ Notion 앱의 최대 단점은 시작 시간이었고, 이는 소비자들이 �
 ![twitter2.png](twitter2.png)
 
 
-# 🧐How Notion loads
+# 🧐 How Notion loads
 
 Notion은 리액트 웹앱이다. 시작 시간이 길다는 것은 `웹의 로딩 시간이 길다`는 것을 의미한다. 
 
