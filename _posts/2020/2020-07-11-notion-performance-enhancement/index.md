@@ -131,7 +131,7 @@ Bundle initialization이 많은 시간이 걸리는 이유는 이 모든 module�
 />
 ```
 
-Code splitting은 가장 좋은 optimization중 하나이다. Performance에 엄청난 이득을 가져다 준다. [Tinder는 이 방식을 사용해서 load time을 60%](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0)나 줄였다고 한다. Framer는 [CPU idle 시간을 40~45%](https://3perf.com/#clients)를 줄일 수 있었다고 한다.
+<mark>Code splitting은 가장 좋은 optimization 방법중 하나이다</mark> - performance에 엄청난 이득을 가져다 준다. [Tinder는 이 방식을 사용해서 load time을 60%](https://medium.com/@addyosmani/a-tinder-progressive-web-app-performance-case-study-78919d98ece0)나 줄였다고 한다. Framer는 [CPU idle 시간을 40~45%](https://3perf.com/#clients)를 줄일 수 있었다고 한다.
 
 [Code splitting을 할 때 여러 방법들이 있다.](https://medium.com/js-dojo/3-code-splitting-patterns-for-vuejs-and-webpack-b8fff1ea0ba4)
 
@@ -139,23 +139,31 @@ Code splitting은 가장 좋은 optimization중 하나이다. Performance에 엄
 2. below-the-fold 코드 들을 split
 3. conditional content를 split (당장 보이지 않는 다이나믹 UI도)
 
-Notion app은 page가 없고, code-splitting below-the-fold는 page가 워낙 다이나믹해서 하기가 어려웠다. Notion에게 적합한 방법은 3번째 방법뿐이었다. 
+Notion 앱은 page가 없고, code-splitting below-the-fold는 Notion의 페이지들이 워낙 다이나믹해서 하기가 어려웠다. Notion에게 적합한 방법은 3번째 방법뿐이었다. 다음의 파트들은 split하기 좋은 후보군들이다:
 
-- Settings, Import, Trash - 이 UI들을 거의 사용되지 않았다
-- Sidebar, Share, Page Options - 자주 사용되는 UI지만 앱이 처음 시작될 때 필요한 부분들은 아니다. 앱이 시작 된 다음에 initialize되도 괜찮다
-- Heave page 블록. 몇개의 page 블록들은 매우 무겁다 - e.g. 68개의 언어를 highlight하는 Code 블록, 120+개의 minified KBs를 Prism.js에서 가져와서 bunlde화 한다. Notion은 이미 몇개의 블록들은 split하고 있다 (e.g. Math equation). 다른 블록들에도  적용될만 하다.
+- _Settings, Import, Trash_ - 이 UI들을 거의 사용되지 않는다
+- _Sidebar, Share, Page Options_ - 자주 사용되는 UI지만 앱이 처음 시작될 때 필요한 부분들은 아니다. 앱이 시작 된 다음에 initialize되어도 괜찮다
+- _Heave page 블록_. 몇몇 page 블록들은 매우 무겁다, 예를 들어, 68개의 언어를 highlight하는 Code 블록은 120+개의 축소된 KBs를 Prism.js에서 가져와서 bunlde화 한다. Notion은 이미 몇개의 블록들은 split하고 있다 (e.g. Math equation). 이는 다른 블록들에도 적용될만 하다.
 
-## Check that module concatenation is working
+Sidebar과 자주 사용되지 않은 UI들
+![sidebar.png](sidebar.png)
+
+무거운 block들
+![pageblock.png](pageblock.png)
+
+
+
+## 2. Check that module concatenation is working
 
 webpack에서 [module concatenation feature](https://webpack.js.org/plugins/module-concatenation-plugin/)는 작은 ES module들을 하나로 merge한다. 사용되지 않는 module들을 processing하는 오버헤드를 줄여주고, 사용되지 않는 코드들을 효과적으로 제거해준다.
 
 module concatenation이 제대로 작동하는지 확인하려면:
 
-- ES module을 Babel로 CommonJS로 transpile하지 않는 것을 확인해야 한다. `@babel/preset-env`는 ES module을 CommonJS로 transpile하지 않는다.
-- `optimization.concatenateModules`가 명시적으로 disable 안되어있는지 확인한다.
-- production webpack에서 `--display-optimization-bailout`을 run한 후에 module concatenation이 bail out하는 경우가 있는지 확인한다.
+- ES module을 Babel로 CommonJS로 transpile하지 않는 것을 확인해야 한다. [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env)는 ES module을 CommonJS로 transpile하지 않는다.
+- [`optimization.concatenateModules`](https://webpack.js.org/configuration/optimization/#optimizationconcatenatemodules)가 명시적으로 disable 안되어있는지 확인한다.
+- production webpack에서 [`--display-optimization-bailout`](https://webpack.js.org/plugins/module-concatenation-plugin/#debugging-optimization-bailouts)을 실행한 후에 module concatenation이 bail out하는 경우가 있는지 확인한다.
 
-Fun Fact. 모든 import들이 `__webpack_require__`함수로 transform된다는 것을 기억해보자.
+> Fun Fact. 모든 import들이 `__webpack_require__`함수로 transform된다는 것을 기억해보자.
 
 만약 같은 함수가 1100번 불리면 어떻게 될까? 전체 시간의 26.8%를 잡아먹는 hot path가 된다. (`s`는 `__webpack_require__`의 minified 이름이다)
 
