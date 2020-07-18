@@ -13,35 +13,43 @@ keywords:
 Notion앱이 고질적인 performance 문제를 어떻게 해결했는지에 대한 번역 글입니다.
 👉[본문](https://3perf.com/blog/notion/)
 
-웹 퍼포먼스는 crisis를 해결 해주지 않는다. 
 
-하지만, 요즘 들어서 빠른 앱의 중요성은 더 커졌다. 수요가 늘어남에 따라서 [인터넷이 더 느려지고 있고](https://www.fastly.com/blog/how-covid-19-is-affecting-internet-performance), [사람들이 핸드폰을 더 오래 보게 되었다](https://www.cnet.com/news/mobile-phone-shipments-will-drop-to-10-year-low-this-year-as-coronavirus-hurts-demand/). 앱이 느리다면 - 유저들은 영향을 받게 된다.
+웹 퍼포먼스는 위기를 해결해주지는 않는다. 
 
-느린 앱 = worse 비즈니스
+하지만, 요즘 들어서 빠른 앱의 중요성은 나날이 커져가고 있다. 인터넷에 대한 수요가 늘어남에 따라서 [인터넷이 더 느려지고 있고](https://www.fastly.com/blog/how-covid-19-is-affecting-internet-performance), [사람들은 핸드폰을 더 오래 보게 되었다](https://www.cnet.com/news/mobile-phone-shipments-will-drop-to-10-year-low-this-year-as-coronavirus-hurts-demand/). 즉, 앱이 느리다면 유저들은 직접적으로 영향을 받게 된다.
 
-Notion app의 최대 단점은 start up 시간이었다. 
+> 느린 앱 = 악화되는 비즈니스
 
-[https://twitter.com/aniketmandle11/status/1256659106464698368?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1256659106464698368%7Ctwgr%5E&ref_url=https%3A%2F%2F3perf.com%2Fblog%2Fnotion%2F](https://twitter.com/aniketmandle11/status/1256659106464698368?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1256659106464698368%7Ctwgr%5E&ref_url=https%3A%2F%2F3perf.com%2Fblog%2Fnotion%2F)
+Notion 앱의 최대 단점은 시작 시간이었고, 이는 소비자들이 가장 많이 불평하던 부분이었다. 
 
-그러나, 최근에 이 부분을 상당히 많이 해결했다.
+![twitter1.png](twitter1.png)
+
+그러나, 최근에 Notion은 이 부분을 개선하기 위해 상당히 노력했고, 상당 부분 개선되었다. 이제 리버스 엔지니어링을 통해 어떻게 최적화가 되었는지 살펴보려고 한다.
 
 ![twitter2.png](twitter2.png)
 
-## How Notion loads
 
-Notion은 리액트 웹앱이다. Start up 시간이 길다는 것은 웹의 로딩 시간이 길다는 것과 같은 것을 의미한다. 
+# 🧐How Notion loads
 
-> Desktop에서는 웹앱이 Electron에 wrap되어 있다. 모바일에서는 Notion app이 RN과 웹 파트를 둘다 run 한다.
+Notion은 리액트 웹앱이다. 시작 시간이 길다는 것은 `웹의 로딩 시간이 길다`는 것을 의미한다. 
 
-Public notion page를 만들고 [WebPageTest](https://webpagetest.org/) audit을 run 해봤다.
+> Desktop에서는 웹앱이 Electron에 wrap되어 있다. 모바일에서는 Notion app이 RN과 웹 파트를 둘다 실행한다 한다.
+
+Web 파트가 어떻게 로딩되는지 보기 위해, notion 앱의 public page를 새로 만들어 보고 [WebPageTest](https://webpagetest.org/)(performance 테스팅 툴) audit을 실행 해봤다. WebPageTest는 아주 유용한 정보들을 제공해주고, 그 중 로딩 waterfall(로딩 실행 흐름)을 보여 준다.
+
+![load6.png](load6.png)
+
+
+조금 자세히 들여다보자
+
 
 ![load1.png](load1.png)
 
 1. 처음에 페이지를 열면, 페이지는 몇개의 stylesheet과 2개의 JS bundle을 load 한다 - `vendor`와 `app`
-2. Bundle들이 load되면, execution을 진행한다 - 거의 1초가 걸림
-3. App이 initialize되면, page data에 대해서 API request를 보내기 시작한다. 그리고 analytics를 load한다
-4. 추가적인 코드를 execute한다
-5. 5.6초가 되었을 때, 첫 번째 paint가 보이게 된다. 그리고 spinner만....
+2. Bundle들이 로드되고 나서 실행을 한다 - 거의 1초가 걸림
+3. 앱이 시작되면, page data에 대해서 API request를 보내기 시작한다. 그리고 analytics를 로드한다.
+4. 추가적인 코드를 실행한다.
+5. 5.6초가 되었을 때, 첫 번째 paint가 보이게 된다. 그리고 spinner만....보인다. 
 
     ![loading_image_1.png](loading_image_1.png)
 
@@ -49,45 +57,47 @@ Public notion page를 만들고 [WebPageTest](https://webpagetest.org/) audit을
 
     ![loading_image_2.png](loading_image_2.png)
 
-모든 hero image들을 load하기 까지 몇 초가 더 걸린다.
+모든 hero image들을 load하기 까지는 몇 초가 더 걸린다.
 
-Desktop 에서도 6.2초는 꽤 긴 시간이지만, 미디엄 티어의 모바일 폰에서는 12.6초까지 늘어난다. 
+Desktop에서도 6.2초는 꽤 긴 시간이지만, 중간 티어의 모바일 폰에서는 시작 시간이 12.6초까지 늘어난다. 
 
-## Cost of Javascript
 
-`loading speed`는 보통 `networking performance`를 의미한다. 네트워킹에 대해서는 Notion이 잘 하고 있다. HTTP/2를 사용하고 있고, 파일들을 gzip하고, proxy CDN으로 Cloudflare를 사용하고 있다. 
+이제 어떻게 성능을 향상시킬 수 있을지 봐보자
 
-`loading speed`의 다른 부분은 `processing performance`도 있다. 모든 리소스를 다운로드 하는 것에는 processing cost가 있다: gzip은 decompress(압축 해제)가 되어야 하고, 이미지들은 디코딩되어야 하고, JS는 execute 되어야 한다.
+# 💸 Cost of Javascript
 
-Networking performance와 다르게 processing performance는 네트워크가 좋아진다고 나아지지 않는다. 오히려 유저의 CPU에 따라서 이 시간이 달라진다. (특히 안드로이드 폰에서 매우 느리다)
+`loading speed`는 보통 `networking performance`를 의미한다. 네트워크에 대해서는 Notion이 잘 하고 있다. HTTP/2를 사용하고 있고, 파일들을 gzip하고, proxy CDN으로 Cloudflare를 사용하고 있다. 
+
+`loading speed`의 다른 부분에는 `processing performance`도 있다. 모든 리소스들을 다운로드 하는 것에는 processing cost가 있다: gzip은 decompress(압축 해제)가 되어야 하고, 이미지들은 디코딩되어야 하고, JS가 실행 되어야 한다.
+
+Networking performance와 다르게 processing performance는 네트워크가 좋아진다고 나아지지 않는다. 오히려 유저 기기의 CPU에 따라서 이 시간이 달라진다. (특히 안드로이드 폰에서 매우 느리다....)
 
 ![phone_perf.png](phone_perf.png)
 
 Networking cost는 앱에 캐싱하면 해결하기 쉽다. 하지만, processing cost는 앱이 시작될 때마다 내야하는 cost이다. 
 
-테스트를 했을 때 Nexus 5에서, `vendor`와 `app` bundle을 execut하는데 약 4.9초가 걸린다. 이 시간 동안 페이지는 비어있는 상태로 유저한테 보여지게 된다. 
+테스트를 했을 때 Nexus 5에서, `vendor`와 `app` bundle을 execut하는데 약 4.9초가 걸렸다. 이 시간 동안 유저들은 비어있는 페이지를 보게 된다. 
 
 ![load2.png](load2.png)
 
-그럼 이 시간동안 뭐가 일어나는가? WebPageTest는 JS의 trace를 기록하지 않는다, 하지만 DevTools로 가서 local audit을 run 하면 볼 수 있다.
+그럼 이 시간동안 뭐가 일어나는가? WebPageTest는 JS의 trace를 기록하지 않기 때문에 DevTools로 가서 local audit을 실행하면 뭐가 일어나는지 볼 수 있다.
 
 ![load3.png](load3.png)
 
-처음에 `vendor` bundle이 컴파일 될 때까지 약 0.4초가 걸린다. 그 다음에, `app` bundle이 컴파일 될 때까지 약 1.2초가 걸린다. 마지막으로, 두 bundle이 execution을 하는데 3.3초가 걸린다.
+처음에 `vendor` bundle이 컴파일 될 때까지 약 0.4초가 걸린다. 그 다음에, `app` bundle이 컴파일 될 때까지 약 1.2초가 걸린다. 마지막으로, 두 bundle이 실행되는데 3.3초가 걸린다.
 
-어떻게 이 시간을 줄일 수 있을까?
+그렇다면, 어떻게 이 시간을 줄일 수 있을까?
 
-## Defer JS execution
+# ⛔️ Defer JS execution
 
-Bundle의 execution phase를 봐보자. 
+Bundle의 실행 phase를 봐보자. 
 
 ![load4.png](load4.png)
 
 
-- 4글자 함수들은 (e.g. `bkwR` or `Cycz)` application module들이다.
+- 4글자 함수들은 (e.g. `bkwR` or `Cycz`) application module들이다.
 
-    webpack이 bundle을 빌드할 때, 각 module을 함수로 wrap하고 ID를 부여 한다. ID는 함수의 이름이 된다. Bundle에서는 다음과 같이 보이게 된다.
-
+    webpack이 bundle을 빌드할 때, 각 module을 함수로 wrap하고 ID를 부여 한다. ID는 함수의 이름이 된다. Bundle에서는 다음과 같이 보이게 된다:
     ```jsx
     // Before
     import formatDate from './formatDate.js';
@@ -99,17 +109,17 @@ Bundle의 execution phase를 봐보자.
     __webpack_require__("xN6P"); | | // ... | }, |
     ```
 
-- 그리고 `s` 함수는 사실 `__webpack_require__`이다.
+- 그리고 `s` 함수는  `__webpack_require__`을 의미한다.
 
     `__webpack_require__`는 webpack의 internal함수로써 module을 require하는데 사용된다. `import`를 사용할 때마다, webpack은 `__webpack_require__()`로 변환한다.
 
-Bundle initialization이 많은 시간이 걸리는 유이는 이 모든 module들을 execute하기 때문이다. 각module은 execute하는데 몇 ms만 걸릴 수 있다, 하지만 Notion에는 1100+개의 module들이 있기 때문에 이 시간이 더해지는 것이다.
+Bundle initialization이 많은 시간이 걸리는 이유는 이 모든 module들을 실행하기 때문이다. 각 module은 실행하는데 몇 ms만 걸릴 수 있다, 하지만 Notion에는 1100+개의 module들이 있기 때문에 이 시간이 어마어마해지는 것이다. 
 
-이 문제를 해결할 수 있는 유일한 방법은 처음에 몇개의 module들만 execute하는 것이다.
+이 문제를 해결할 수 있는 유일한 방법은 처음에 몇개의 module들만 실행시키는 것이다.
 
-## Use code splitting
+## 1. Use code splitting
 
-Start up 시간을 줄일 수 있는 가장 좋은 방법은 당장 사용되지 않는 feature들을 `code-split`하는 것이다. [Code-Split](https://webpack.js.org/guides/code-splitting/)
+시작 시간을 줄일 수 있는 가장 좋은 방법은 당장 사용되지 않는 feature들을 `code-split`하는 것이다. [Code-Split](https://webpack.js.org/guides/code-splitting/)
 
 ```jsx
 // Before
