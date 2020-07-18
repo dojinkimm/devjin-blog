@@ -11,8 +11,10 @@ keywords:
 ---
 
 Notion앱이 고질적인 performance 문제를 어떻게 해결했는지에 대한 번역 글입니다.
-👉[본문](https://3perf.com/blog/notion/)
 
+👉 [본문](https://3perf.com/blog/notion/)
+
+<hr/>
 
 웹 퍼포먼스는 위기를 해결해주지는 않는다. 
 
