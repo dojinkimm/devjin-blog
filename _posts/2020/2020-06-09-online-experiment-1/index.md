@@ -11,7 +11,10 @@ keywords:
 
 > **Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing**라는 책을 읽고 요약하고 있다. 이 포스트에서는 **1장: Introduction and Motivation**에 대해 다루고 있다.  
 
-<img src="./trustyworthy.jpg"/>
+<img src="./trustworthy.jpg"/>
+
+<p style="text-align: center;"> TrustWOrthy Online Controlled Experiments 책 표지 </p>
+
 
 > 글에서 얘기하는 **실험**은 **online controlled experiment**를 의미한다. online controlled experiment은 때로 A/B 테스트라고도 불린다.
 

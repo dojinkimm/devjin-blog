@@ -82,7 +82,7 @@ keywords:
 
 ![architecture](./architecture.png)
 
-실험플랫폼 아키텍처의 한 예시.
+<p style="text-align: center;"> 실험플랫폼 아키텍처의 한 예시. </p>
 
 ### 1. 실험 정의, 설정 매니지먼트
 
