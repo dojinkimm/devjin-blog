@@ -11,6 +11,8 @@ keywords:
 
 > **Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing**라는 책을 읽고 요약하고 있다. 이 포스트에서는 **1장: Introduction and Motivation**에 대해 다루고 있다.  
 
+<img src="./trustyworthy.jpg"/>
+
 > 글에서 얘기하는 **실험**은 **online controlled experiment**를 의미한다. online controlled experiment은 때로 A/B 테스트라고도 불린다.
 
 📕 책에 들어가기 앞서, A/B테스트라고도 불리는 실험(=online controlled experiment)가 무엇이고 어떻게 사용되는지 설명하려고 한다. A/B 테스트라고 하면 특정 변수를 (ex. 앱 화면, 버튼 색깔, 광고 위치 등) 2 가지 버전으로 만들고 테스트의 대상이 2가지 버전에 대해 어떤 반응을 보이는지 테스트를 하는 것을 의미한다.  
