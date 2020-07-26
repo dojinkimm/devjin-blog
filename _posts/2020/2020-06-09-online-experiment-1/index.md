@@ -13,7 +13,7 @@ keywords:
 
 <img src="./trustworthy.jpg"/>
 
-<p style="text-align: center;"> TrustWOrthy Online Controlled Experiments 책 표지 </p>
+<p style="text-align: center;"> Trustworthy Online Controlled Experiments 책 표지 </p>
 
 
 > 글에서 얘기하는 **실험**은 **online controlled experiment**를 의미한다. online controlled experiment은 때로 A/B 테스트라고도 불린다.
