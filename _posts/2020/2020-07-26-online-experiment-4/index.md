@@ -1,5 +1,5 @@
 ---
-title: 🏃‍♂️ [책 요약] Trustworthy Online Controlled Experiments - ch4 Experimentation Platform and Culture
+title: 🧪 [책 요약] Trustworthy Online Controlled Experiments - ch4 Experimentation Platform and Culture
 date: 2020-07-26
 tags:
   - online-controlled-experiment
