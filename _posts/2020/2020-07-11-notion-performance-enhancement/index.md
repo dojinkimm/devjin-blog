@@ -351,7 +351,7 @@ minified된 코드에서는 각각
 
 - API request는 bundle이 완전히 다운로드 되기전까지 시작되지 않는다
 - Contentful paint는 대부분의 API request가 완료 되기 전까지 발생하지 않는다. (35개의 request를 기다린다)
-- API request는 3가지의 서드파티 툴과 혼합되어 있따: Intercom, Segment, Amplitude
+- API request는 3가지의 서드파티 툴과 혼합되어 있다: Intercom, Segment, Amplitude
 
 이제 다음과 같이 최적화 하려고 한다.
 
@@ -362,7 +362,7 @@ minified된 코드에서는 각각
 - **유용한 점:** 확실한 비즈니스 밸류를 위해 서드파티를 추가 한다 (e.g. 유저들이 앱을 어떻게 사용하는지에 대한 분석).
 - **문제점:** 서드파티들은 loading performance에 안좋은 영향을 준다.
 
-Notion에서 이 서드파티들은 앱이 initialize될 떄 메인 쓰레드를 막아서 performance에 악영향을 준다. 현실적으로, 이 서드파트들을 없애는 것은 불가능하고 밑과 같이 defer할 수는 있다.
+Notion에서 이 서드파티들은 앱이 initialize될 때 메인 쓰레드를 막아서 performance에 악영향을 준다. 현실적으로, 이 서드파트들을 없애는 것은 불가능하고 밑과 같이 defer할 수는 있다.
 
 ```jsx
 // Before
@@ -445,7 +445,7 @@ app.get('*', (req, res) => {
 > 참고 문서 - [Streams documentation](https://developers.cloudflare.com/workers/reference/apis/streams/), 
 > 참고 예시 - [Streaming recipes](https://developers.cloudflare.com/workers/archive/recipes/streaming-responses/), [Fast Google Fonts](https://github.com/cloudflare/worker-examples/tree/master/examples/fast-google-fonts)
 
-**Inline a script to prefetch page data.** 다른 방법으로는 data를 미리 fetchgksms inline script를 작성할 수 있다.
+**Inline a script to prefetch page data.** 다른 방법으로는 data를 미리 fetch하는 inline script를 작성할 수 있다.
 
 ```jsx
 <div id="notion-app"></div>
@@ -488,7 +488,7 @@ Notion은 response의 header에 `Cache-Control`을 설정하고 있지 않다. C
 
 ## 2. Loading skeleton
 
-Notion 앱은 원래 page가 로딩 될 떄 spinner를 보여줬었다.
+Notion 앱은 원래 page가 로딩 될 때 spinner를 보여줬었다.
 
 ![spinner.png](spinner.png)
 
