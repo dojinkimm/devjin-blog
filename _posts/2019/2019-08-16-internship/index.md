@@ -59,7 +59,7 @@ keywords:
 
 ### Object Detection 결과 및 성능은?
 
-![object detection gif](./hancome-intern-3.gif)
+<img src="./hancome-intern-3.gif"/>
 <img src="./hancome-intern-4.png"/>
 <img src="./hancome-intern-5.png"/>
 
