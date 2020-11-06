@@ -33,7 +33,8 @@ func DoSomething(ctx context.Context, arg Arg) error {
 
 
 
-⚠️ 주의할 점
+**⚠️ 주의할 점**
+
 `context`는 struct로 갖고 있으면 안된다, 위 예제처럼 항상 명시적으로 전달을 해야 한다. `nil` `context`를 파라미터러 전달이 허용되도 절대 `nil`을 전달하면 안된다. 어떤 `context`을 전달할지 모르겠다면 `context.TODO`를  전달하면 된다.
 
 이제 `Context` type에  대해 더 깊이 알아보자. `Context` type은 interface이고 4개의 method로 구성되어 있다. 
