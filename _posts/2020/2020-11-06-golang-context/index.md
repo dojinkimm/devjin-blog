@@ -31,8 +31,9 @@ func DoSomething(ctx context.Context, arg Arg) error {
 }
 ```
 
-⚠️ 주의할 점
 
+
+⚠️ 주의할 점
 `context`는 struct로 갖고 있으면 안된다, 위 예제처럼 항상 명시적으로 전달을 해야 한다. `nil` `context`를 파라미터러 전달이 허용되도 절대 `nil`을 전달하면 안된다. 어떤 `context`을 전달할지 모르겠다면 `context.TODO`를  전달하면 된다.
 
 이제 `Context` type에  대해 더 깊이 알아보자. `Context` type은 interface이고 4개의 method로 구성되어 있다. 
@@ -55,6 +56,7 @@ type Context interface {
 }
 ```
 
+
 ### 1. Done
 
 `Done` method는 해당 `context`(맥락)이 cancel 혹은 타임아웃 되었을 때 닫힌 channel을 리턴한다. 
@@ -70,6 +72,7 @@ Done() <-chan struct{}
 
 가 cancel 될 수 없는 `context`들이다. 
 
+
 ### 2. Err
 
 만약 `Done`이 닫혀있지 않다면 `Err`는 nil을 리턴한다. 만약 `Done`이 닫혀있다면 `Err`는 non-nil 에러를 리턴한다. 에러에는 왜 `context`가 cancel되었는지에 대한 설명이 존재한다.
@@ -77,6 +80,7 @@ Done() <-chan struct{}
 ```go
 Err() error
 ```
+
 
 ### 3. Deadline
 
@@ -86,6 +90,7 @@ Err() error
 Deadline() (deadline time.Time, ok bool)
 ```
 
+
 ### 4. Value
 
 `Value`는 `context`(맥락)에 key가 있으면, 그 key에 해당하는 값이다. 자세한 내용은 밑에 `WithValue`를 참고하면 된다. 
@@ -93,6 +98,7 @@ Deadline() (deadline time.Time, ok bool)
 ```go
 Value(key interface{}) interface{}
 ```
+
 
 # 💁‍♂️ Empty Context
 
@@ -150,6 +156,7 @@ func TODO() Context {
 - `context.Backgroud()`는 보통 main 함수, initialization, 테스트, 혹은 request의 최상단에 선언되고 사용된다.
 - `context.TODO()`는 어떤 `context`를 사용해야 할지 모호한 경우에 보통 사용된다.
 
+
 # 🙅‍♂️ Cancel context
 
 Context 사용에 있어서 이 cancel context 부분을 이해하는 것이 매우 중요하다. Go를 동시성있게 고루틴을 이용한 코드를 작성할 수 있는 것이 cancel할 수 있는 context가 있기 때문이다. 고루틴을 사용할 때 종료를 제대로 해주지 않으면 종료되지 않는 작업을 만들게 될 수 있다. 그 때, 이 고루틴의 종료를 관리해줄 수 있는 것이 바로 cancel 가능한 context인 것이다. 
@@ -174,6 +181,7 @@ cancel 가능한 context가 있다면, 유저가 response가 오기 전에 reque
 
 왜 cancel 가능한 context가 필요한지 대략 이해했으니, 어떻게 이런 context가 구현되어있는지 보려고 한다.
 
+
 ## 1. `WithCancel`
 
 Cancel할 수 있는 context를 만들어주는 `WithCancel` 의 구현을 line by line 뜯어보려고 한다.  하나씩 설명해나가기 앞서 `WithCancel`에 대한 간략한 설명을 하자면, 이 함수는 parent context의 copy본과 새로운 Done channel을 리턴한다. 이 새로운 Done channel은 함수가 리턴하는 `cancel` 함수가 호출되던지, 혹은 parent context의 Done channel이 닫힐 때 같이 닫히게 된다. 
@@ -191,6 +199,7 @@ func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 
 `WithCancel` 함수를 총 5가지 step으로 나눠서 설명하려고 한다.
 
+
 ### 1.1 Parameter
 
 함수의 paremeter 값을 보면, 이 함수를 호출하기 전에 미리 parent `context` (`context.Background()` 혹은 `context.TODO()`)를 만들고, 해당 `context`를 인자로 전달해야 함을 알 수 있다.
@@ -203,6 +212,7 @@ ctx, cancel := context.WithCancel(context.Background())
 
 ```
 
+
 ### 1.2 Parent context Validation
 
 위처럼 valid한 `context` 를 `WithCancel` 함수에 전달해야 하는 이유는 가장 첫줄에 `nil`을 validation하는 로직이 있기 때문이다. 이 때, 만약 `Context` type의 값이 정상 값이 아니라면,  panic을 야기한다.
@@ -214,6 +224,7 @@ ctx, cancel := context.WithCancel(context.Background())
 	}
 	...
 ```
+
 
 ### 1.3 새로운 Cancel할 수 있는 context 생성
 
@@ -243,6 +254,7 @@ type cancelCtx struct {
 일단, mutex는 다른 값들을 지켜주는 역할을 하고, 이 메커니즘을 통해 `context` 패키지는 동시성(concurrency)이 가능해지는 것이다.
 
 `cancelCtx`는 cancel될 수 있다. 그리고 cancel될 때는 이 canceler를 구현한 모든 children들이 함께 cancel된다. 즉, `newCancelCtx` 함수에 parent `context`를 인자로 넣으면 새로운 `context`를 만들어서 리턴해주는 데, 이 새로운 `context`가 cancel되면 그 밑에 있는 모든 children들까지 다 cancel이 되는 것이다.
+
 
 ### 1.4 Propagate Cancel
 
@@ -403,6 +415,7 @@ if p, ok := parentCancelCtx(parent); ok {
 }
 ```
 
+
 ### 1.5 Context와 CancelFunc 리턴
 
 위 과정들이 다 마치면 `WithCancel` 함수는 새롭게 만들어진 cancel 가능한 context와 그 context를 cancel할 수 있는 함수를 리턴하게 된다.
@@ -413,6 +426,7 @@ return &c, func() { c.cancel(true, Canceled) }
 // cancel의 두번째 인자인 Canceled는 context가 cancel되었다는 메세지를 담은 에러이다
 // var Canceled = errors.New("context canceled")
 ```
+
 
 ### **😓  아직 cancel에 대한 내용이 끝나지 않았다...**
 
@@ -470,6 +484,7 @@ func removeChild(parent Context, child canceler) {
 ```
 
 비로소 `WithCancel` 함수에 대한 설명이 끝이 났다. `WithCancel`의 자매품인 `WithDeadline`과 `WithTimeout`이 있는데, `WithCancel`의 내부 구현과 cancel 자체가 어떻게 되는지 이해하면 쉽게 이해할 수 있는 부분들이다.
+
 
 ## 2. `WithDeadline`
 
@@ -568,6 +583,7 @@ return c, func() { c.cancel(true, Canceled)
 }
 ```
 
+
 ## 3. `WithTimeout`
 
 `WithCancel`, `WithDeadline`을 이해했다면, `WithTimeout`을 매우 쉽게 이해할 수 있다. `WithTimeout`함수에 일정 시간이 지난 다음 `context`를 cancel하는 timeout 시간을 전달하면, 내부에서 (현재 시간 + 인자로 전달된 timeout 시간)을 더해서 `WithDeadline`의 마감기간으로 전달한다. 
@@ -601,9 +617,11 @@ type valueCtx struct {
 }
 ```
 
+
 # 🙇‍♂️ 마무리
 
 드디어 Go의 context 패키지 이해하기 포스트가 끝났다. Go로 서버를 구현하면서 `context` 패키지를 자주 마주했지만 제대로 이해하지 못한 체 사용하고 있었다. 이번 기회에 `context` 패키지의 내부를 분석해 보면서 동작법을 제대로 이해하게 되었다. 앞으로 `context` 관련 에러가 발생한다면 더 빠르게 디버깅 해볼 수 있을 것만 같다 😇. 
+
 
 # 🔗 References
 
