@@ -593,8 +593,9 @@ func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc) {
 	return WithDeadline(parent, time.Now().Add(timeout))
 }
 ```
+<br/>
 
-➕ `WithValue`
+**➕ `WithValue`**
 
 `WithValue`는 cancel할 수 있는 `context`를 리턴하는 함수는 아니지만, 이 파트에서 설명하려고 한다 (설명할 부분도 많지 않다). 이 함수는 key-value pair를 가진 `context`를 리턴한다. 리턴된 `context`에서 key를 입력해서 해당하는 value가 있다면 그 value를 전달한다. 
 
