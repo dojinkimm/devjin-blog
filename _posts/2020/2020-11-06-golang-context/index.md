@@ -7,6 +7,7 @@ keywords:
   - golang
   - context 
   - package
+cover: "./main.png" 
 ---
 
 ![main](./main.png)

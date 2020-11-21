@@ -8,7 +8,6 @@ import moment from 'moment';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import { faListUl, faLayerGroup, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import AdSense from 'react-adsense';
-import { FiCoffee } from 'react-icons/fi';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -32,6 +31,8 @@ import 'katex/dist/katex.min.css';
 import './code-theme.scss';
 import './post.scss';
 
+import think from '../../src/images/think.png';
+
 const config = require('../../config');
 
 export interface postProps {
@@ -44,7 +45,7 @@ const Post = (props: postProps) => {
   const { data, pageContext, isMobile } = props;
   const { markdownRemark } = data;
   const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
-  const { title, date, tags, keywords } = frontmatter;
+  const { title, date, tags, keywords, cover } = frontmatter;
   const { timeToRead } = markdownRemark;
   let update = frontmatter.update;
   if (Number(update?.split(',')[1]) === 1) update = null;
@@ -198,7 +199,7 @@ const Post = (props: postProps) => {
         </script>
       </Helmet>
 
-      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)} />
+      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)} image={cover ?? think} />
 
       <Layout>
         <div className="blog-post-container">
