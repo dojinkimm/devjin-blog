@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { graphql, Link } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
-import moment from 'moment';
+import moment, { HTML5_FMT } from 'moment';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import { faListUl, faLayerGroup, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import AdSense from 'react-adsense';
@@ -31,7 +31,7 @@ import 'katex/dist/katex.min.css';
 import './code-theme.scss';
 import './post.scss';
 
-import think from '../../src/images/think.png';
+import think from '../../src/images/profile.png';
 
 const config = require('../../config');
 
@@ -51,6 +51,8 @@ const Post = (props: postProps) => {
   if (Number(update?.split(',')[1]) === 1) update = null;
   const { slug } = fields;
   const { series } = pageContext;
+
+  console.log(cover, "COVER", cover instanceof HTMLImageElement, "THINK", think instanceof HTMLImageElement);
 
   interface iConfig {
     enablePostOfContents: boolean;
@@ -199,7 +201,7 @@ const Post = (props: postProps) => {
         </script>
       </Helmet>
 
-      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)} image={cover ?? think} />
+      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)}/>
 
       <Layout>
         <div className="blog-post-container">

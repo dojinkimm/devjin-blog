@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 export interface SEOPropsType {
   description: string;
-  image: string;
   lang: string;
   meta: any[];
   title: string;
@@ -12,7 +11,7 @@ export interface SEOPropsType {
 }
 
 function SEO(props: SEOPropsType) {
-  const { description, lang, meta, title, keywords, image } = props;
+  const { description, lang, meta, title, keywords } = props;
 
   const { site } = useStaticQuery(
     graphql`
@@ -55,10 +54,6 @@ function SEO(props: SEOPropsType) {
           content: `website`,
         },
         {
-          property: `og:image`,
-          content: image,
-        },
-        {
           name: `twitter:card`,
           content: `summary`,
         },
@@ -88,7 +83,6 @@ SEO.defaultProps = {
   meta: [],
   description: ``,
   keywords: [],
-  image: ``,
 };
 
 export default SEO;
