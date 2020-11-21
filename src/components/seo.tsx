@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import think from "../images/profile.png";
+import think from "../images/think.png";
 
 export interface SEOPropsType {
   description: string;
