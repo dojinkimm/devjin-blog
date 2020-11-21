@@ -45,14 +45,12 @@ const Post = (props: postProps) => {
   const { data, pageContext, isMobile } = props;
   const { markdownRemark } = data;
   const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
-  const { title, date, tags, keywords, cover } = frontmatter;
+  const { title, date, tags, keywords } = frontmatter;
   const { timeToRead } = markdownRemark;
   let update = frontmatter.update;
   if (Number(update?.split(',')[1]) === 1) update = null;
   const { slug } = fields;
   const { series } = pageContext;
-
-  console.log(cover, "COVER", think);
 
   interface iConfig {
     enablePostOfContents: boolean;

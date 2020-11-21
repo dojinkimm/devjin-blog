@@ -9,7 +9,6 @@ keywords:
   - errgroup
   - package
   - sync
-cover: "./main.png" 
 ---
 
 ![main](./main.png)
