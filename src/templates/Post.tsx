@@ -52,7 +52,7 @@ const Post = (props: postProps) => {
   const { slug } = fields;
   const { series } = pageContext;
 
-  console.log(cover, "COVER", cover instanceof HTMLImageElement, "THINK", think instanceof HTMLImageElement);
+  console.log(cover, "COVER", think);
 
   interface iConfig {
     enablePostOfContents: boolean;
