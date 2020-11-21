@@ -13,6 +13,8 @@ keywords:
 
 Go로 HTTP 서버, DB, 혹은 고루틴을 구현해본 사람이라면 무조건 `context`를 사용해본 경험이 있을 것이다. 다른 오픈소스 코드들을 볼때 `context`의 자매품(?)인 `WithCancel`,`WithTimeout`, `WithDeadline`등도 종종 접해볼 기회가 있었을 것이다. 이처럼 개발하다 보면 자주 등장하는 패키지임에도 사용법이 복잡하지는 않아서 깊이 공부하지 않고 넘어가는 경우가 있었을 것이라고 생각한다 (내가 그랬다...). 하지만, 내가 작성한 코드가 어떻게 돌아가는지 이해하기 위해서는 `context`의 개념을 반드시 짚고 넘어가야할 개념이라고 생각해서 이번 블로그 포스트에서 `context`에 대해 다뤄보려고 한다.  
 <br/>
+
+
 # 🔎 Context란?
 
 [공식 Golang 도큐먼트](https://golang.org/pkg/context/#pkg-overview)에 의하면 다음과 같다:
@@ -57,7 +59,7 @@ type Context interface {
 ```
 <br/>
 
-### 1. Done
+## 1. Done
 
 `Done` method는 해당 `context`(맥락)이 cancel 혹은 타임아웃 되었을 때 닫힌 channel을 리턴한다. 
 
@@ -73,7 +75,7 @@ Done() <-chan struct{}
 가 cancel 될 수 없는 `context`들이다. 
 <br/>
 
-### 2. Err
+## 2. Err
 
 만약 `Done`이 닫혀있지 않다면 `Err`는 nil을 리턴한다. 만약 `Done`이 닫혀있다면 `Err`는 non-nil 에러를 리턴한다. 에러에는 왜 `context`가 cancel되었는지에 대한 설명이 존재한다.
 
@@ -82,7 +84,7 @@ Err() error
 ```
 <br/>
 
-### 3. Deadline
+## 3. Deadline
 
 `Deadline` method는 마감기간(deadline)이 존재할 때 주어진 `context`(맥락)의 마감기간을 리턴한다. 만약 마감기간이 정해져있지 않다면 `ok`값으로는 `false`를 리턴한다
 
@@ -91,7 +93,7 @@ Deadline() (deadline time.Time, ok bool)
 ```
 <br/>
 
-### 4. Value
+## 4. Value
 
 `Value`는 `context`(맥락)에 key가 있으면, 그 key에 해당하는 값이다. 자세한 내용은 밑에 `WithValue`를 참고하면 된다. 
 
