@@ -13,7 +13,7 @@ keywords:
 
 ![main](./main.png)
 
-goroutine과 channel은 Golang을 공부할 때 가장 많이 접하게 되는 용어들이다. 그리고 goroutine과 channel을 통해서 동시성 프로그래밍을 사용할 수 있게 된다.  이번 블로그 포스트에서는 goroutine을 10배 잘 활용할 수 있도록 도와주는 `[golang.org/x/sync](http://golang.org/x/sync)` 패키지의 `errgroup`을 소개하려고 한다. 
+goroutine과 channel은 Golang을 공부할 때 가장 많이 접하게 되는 용어들이다. 그리고 goroutine과 channel을 통해서 동시성 프로그래밍을 사용할 수 있게 된다.  이번 블로그 포스트에서는 goroutine을 10배 잘 활용할 수 있도록 도와주는 [golang.org/x/sync](http://golang.org/x/sync) 패키지의 `errgroup`을 소개하려고 한다. 
 <br/>
 
 # 일반적인 goroutine
