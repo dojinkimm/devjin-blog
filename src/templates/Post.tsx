@@ -31,8 +31,6 @@ import 'katex/dist/katex.min.css';
 import './code-theme.scss';
 import './post.scss';
 
-import think from '../../src/images/profile.png';
-
 const config = require('../../config');
 
 export interface postProps {
@@ -178,16 +176,16 @@ const Post = (props: postProps) => {
   },
   "headline": "${title}",
   ${
-            config.profileImageFileName
+            config.ogImageFileName
               ? `"publisher": {
     "@type" : "organization",
     "name" : "${config.name}",
     "logo": {
       "@type": "ImageObject",
-      "url": "${config.siteUrl}${require(`../images/${config.profileImageFileName}`)}"
+      "url": "${config.siteUrl}${require(`../images/${config.ogImageFileName}`)}"
     }
   },
-  "image": ["${config.siteUrl}${require(`../images/${config.profileImageFileName}`)}"]`
+  "image": ["${config.siteUrl}${require(`../images/${config.ogImageFileName}`)}"]`
               : `"publisher": {
     "@type" : "organization",
     "name" : "${config.name}"

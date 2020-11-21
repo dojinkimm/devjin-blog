@@ -60,7 +60,6 @@ const Layout = (props: LayoutPropsType) => {
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
         <link href={`https://fonts.googleapis.com/css?family=${googleFont}`} rel="stylesheet" />
         <meta name="google-site-verification" content={require('../../../config').googleSearchConsole ?? ''} />
-        <meta property="og:image" content="../images/think.png" />
         <script data-ad-client="ca-pub-1867053081376792" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <style>{FaDom.css()}</style>
       </Helmet>

@@ -9,6 +9,7 @@ module.exports = {
   profileImageFileName: 'profile.png', // include filename extension ex.'profile.jpg'
   // The Profile image file is located at path "./images/"
   // If the file does not exist, it is replaced by a random image.
+  ogImageFileName: 'think.png',
 
   /** Home > Bio information*/
   comment: 'Server Engineer @Banksalad',
