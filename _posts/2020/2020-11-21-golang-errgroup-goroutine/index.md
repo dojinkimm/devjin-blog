@@ -125,7 +125,7 @@ for i := 0; i < 5; i++ {
 
 - [semaphore](https://github.com/golang/sync/blob/master/semaphore/semaphore.go) - weight가 있는 세마포어가 구현되어 있다
 - [singleflight](https://github.com/golang/sync/blob/master/singleflight/singleflight.go) - 중복 function call suppression을 지원한다고 되어 있다 (사용 안해봐서 잘 모름...)
-- `syncmap](https://github.com/golang/sync/blob/master/syncmap/pre_go19.go) - map type을 동시성있게 여러 goroutine내에서 사용할 수 있게 해준다.
+- [syncmap](https://github.com/golang/sync/blob/master/syncmap/pre_go19.go) - map type을 동시성있게 여러 goroutine내에서 사용할 수 있게 해준다.
 - [errgroup](https://github.com/golang/sync/blob/master/errgroup/errgroup.go) - 하나의 공통적인 작업의 subtask들을 실행하는 goroutine들의 context cancellation, synchronization, 그리고 error propagation을 지원한다.
 
 `WaitGroup`을 사용해서 goroutine을 다루던 예제를 `errgroup`을 사용하던 예제로 바꾸면 밑과 같다. `errgroup`은 특히 진행하는 작업들이 에러를 야기하는 경우가 있을 때 사용하기 유용하다.
