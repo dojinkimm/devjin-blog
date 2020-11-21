@@ -11,9 +11,9 @@ module.exports = {
   // If the file does not exist, it is replaced by a random image.
 
   /** Home > Bio information*/
-  comment: 'Junior Server Developer @Rainist',
+  comment: 'Server Engineer @Banksalad',
   name: 'Dojin Kim',
-  company: '@Rainist',
+  company: '@Banksalad',
   location: 'Korea',
   email: 'dojinkim119@gmail.com',
   website: 'https://devjin-blog.com',
