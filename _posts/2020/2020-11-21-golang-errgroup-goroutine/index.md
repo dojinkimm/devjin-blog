@@ -49,9 +49,9 @@ func main() {
 <br/>
 
 
-## WaitGroup 있는 goroutine
+## `WaitGroup` 있는 goroutine
 
-Main fuction이 끝나기 전에 goroutine들이 작업을 다 마쳤는지 기다려주는 기능을 추가하는 것은 좋은 practice이다. `[sync` 패키지](https://golang.org/pkg/sync/)에 있는 `WaitGroup`을 활용하면 goroutine들이 작업을 완료할 때까지 기다리게 할 수 있다. `WaitGroup`이 사용할 수 있는 함수는 총 3개가 있다. 
+Main fuction이 끝나기 전에 goroutine들이 작업을 다 마쳤는지 기다려주는 기능을 추가하는 것은 좋은 practice이다. [`sync` 패키지](https://golang.org/pkg/sync/)에 있는 `WaitGroup`을 활용하면 goroutine들이 작업을 완료할 때까지 기다리게 할 수 있다. `WaitGroup`이 사용할 수 있는 함수는 총 3개가 있다. 
 
 1. `Add` - `WaitGroup`의 수를 늘린다. 즉, `WaitGroup`이 기다려야 할 goroutine의 수를 증가시킨다고 보면 된다.  
 2. `Done` - `WaitGroup`의 수를 줄인다. `Add`와는 반대로 goroutine 작업이 완료되면 이 함수 호출을 통해 `WaitGroup`이 기다려야할 goroutine의 수를 감소시킨다.
@@ -117,11 +117,11 @@ for i := 0; i < 5; i++ {
 <br/>
 
 
-# errGroup을 활용한 goroutine
+# `errgroup`을 활용한 goroutine
 
-`[golang.org/x/sync](http://golang.org/x/sync)` 패키지의 `errgroup`을 활용하면 위 `WaitGroup`만을 활용할 때 발생할 수 있는 에러들을 방지할 수 있다.
+[golang.org/x/sync](http://golang.org/x/sync) 패키지의 `errgroup`을 활용하면 위 `WaitGroup`만을 활용할 때 발생할 수 있는 에러들을 방지할 수 있다.
 
-`errgroup`은 `[golang.org/x/sync](http://golang.org/x/sync)` 패키지에 포함되어 있는 4가지의 구현 중 하나이다. 
+`errgroup`은 [golang.org/x/sync](http://golang.org/x/sync) 패키지에 포함되어 있는 4가지의 구현 중 하나이다. 
 
 - `[semaphore](https://github.com/golang/sync/blob/master/semaphore/semaphore.go)` - weight가 있는 세마포어가 구현되어 있다
 - `[singleflight](https://github.com/golang/sync/blob/master/singleflight/singleflight.go)` - 중복 function call suppression을 지원한다고 되어 있다 (사용 안해봐서 잘 모름...)
@@ -228,7 +228,7 @@ func (g *Group) Go(f func() error) {
 
 `WithContext` 함수는 context를 cancel 시킬 수 있는 Group struct와 cancel 가능한 `context`를 리턴한다. 
 
-Context가 뭔지, cancel 가능한 context가 뭔지 궁금하다면 내 이전 블로그 포스트인 **[Go의 context 패키지 이해하기](https://devjin-blog.com/golang-context/)**를 읽어보는 것을 추천한다.
+> Context가 뭔지, cancel 가능한 context가 뭔지 궁금하다면 내 이전 블로그 포스트인 **[Go의 context 패키지 이해하기](https://devjin-blog.com/golang-context/)**를 읽어보는 것을 추천한다.
 
 ```go
 type Group struct {
