@@ -17,7 +17,7 @@ function SEO({
   lang,
   meta,
   title,
-  keywords = [ '김도진', '기술블로그', '천재개발자', '백엔드', '프론트엔드', 'GoLang' ],
+  keywords = ['김도진', '기술블로그', '천재개발자', '백엔드', '프론트엔드', 'GoLang'],
   thumbnail = THUMBNAIL_DEFAULT_IMAGE,
 }: SEOPropsType) {
   const { site } = useStaticQuery(
