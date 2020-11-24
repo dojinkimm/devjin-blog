@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import THUMBNAIL_DEFAULT_IMAGE from '../images/thumbnail.jpg';
 
 export interface SEOPropsType {
   description: string;
@@ -8,11 +9,17 @@ export interface SEOPropsType {
   meta: any[];
   title: string;
   keywords: string[];
+  thumbnail?: string;
 }
 
-function SEO(props: SEOPropsType) {
-  const { description, lang, meta, title, keywords } = props;
-
+function SEO({
+  description,
+  lang,
+  meta,
+  title,
+  keywords = [ '김도진', '기술블로그', '천재개발자', '백엔드', '프론트엔드', 'GoLang' ],
+  thumbnail = THUMBNAIL_DEFAULT_IMAGE,
+}: SEOPropsType) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -46,6 +53,10 @@ function SEO(props: SEOPropsType) {
           content: title,
         },
         {
+          property: 'og:image',
+          content: thumbnail,
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
@@ -54,8 +65,8 @@ function SEO(props: SEOPropsType) {
           content: `website`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          name: 'twitter:card',
+          content: 'summary_large_image',
         },
         {
           name: `twitter:creator`,
