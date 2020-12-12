@@ -43,7 +43,7 @@ const Post = (props: postProps) => {
   const { data, pageContext, isMobile } = props;
   const { markdownRemark } = data;
   const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
-  const { title, date, tags, keywords } = frontmatter;
+  const { title, date, tags, keywords, thumbnail } = frontmatter;
   const { timeToRead } = markdownRemark;
   let update = frontmatter.update;
   if (Number(update?.split(',')[1]) === 1) update = null;
@@ -197,7 +197,12 @@ const Post = (props: postProps) => {
         </script>
       </Helmet>
 
-      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)}/>
+      <SEO
+        title={title}
+        description={excerpt}
+        keywords={metaKeywords(keywords, tags)}
+        thumbnail={thumbnail}
+      />
 
       <Layout>
         <div className="blog-post-container">
