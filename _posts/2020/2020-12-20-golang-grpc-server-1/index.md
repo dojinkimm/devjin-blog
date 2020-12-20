@@ -128,7 +128,7 @@ go mod init github.com/dojinkimm/go-grpc-example
 
 `go.mod`에 다른 모듈들을 import할 수 있고, import하게 되면 해당 모듈들을 프로젝트 내에서 자유롭게 사용 할 수 있게 된다. `go.mod` 파일이 생성되고 나서는 `grpc` 모듈을 import해야 한다. Go로 구현된 gRPC의 코드는 오픈소스로 [grpc-go repository](https://github.com/grpc/grpc-go)에 있다. `go get -u` 모듈 이름 으로 `grpc-go` 패키지를 import 해온다.
 
-```go
+```bash
 go get -u google.golang.org/grpc
 ```
 
@@ -186,7 +186,7 @@ User 서비스는 두 개의 rpc를 갖도록 구현할 예정이다.
 1. `GetUser`는 user id를 전달하면, user id에 맞는 유저의 정보를 리턴하는 rpc이다
 2. `ListUsers`는 서비스에 존재하는 모든 유저들의 유저 정보를 리턴하는 rpc이다
 
-```go
+```protobuf
 // user/user.proto
 syntax = "proto3";
 
