@@ -187,12 +187,12 @@ User 서비스는 두 개의 rpc를 갖도록 구현할 예정이다.
 2. `ListUsers`는 서비스에 존재하는 모든 유저들의 유저 정보를 리턴하는 rpc이다
 
 ```protobuf
-// user/user.proto
+// protos/user/user.proto
 syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/dojinkimm/go-grpc-example/user";
+option go_package = "github.com/dojinkimm/go-grpc-example/protos/user";
 
 service User {
     rpc GetUser(GetUserRequest) returns (GetUserResponse);
@@ -235,7 +235,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 protoc -I=. \
 	    --go_out . --go_opt paths=source_relative \
 	    --go-grpc_out . --go-grpc_opt paths=source_relative \
-	    user/user.proto
+	    protos/user/user.proto
 ```
 
 컴파일이 되면 `user.proto`파일이 있는 폴더에 `user.pb.go`와 `user_grpc.pb.go` 파일들이 함께 생성된다.
@@ -251,10 +251,10 @@ User 서비스를 정의했으니 이제, 서비스를 담당하는 microservice
 package data
 
 import (
-	pb "github.com/dojinkimm/go-grpc-example/user"
+	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
 )
 
-var UserData = []*pb.UserMessage{
+var UserData = []*userpb.UserMessage{
 	{
 		UserId: "1",
 		Name: "Henry",
@@ -300,21 +300,21 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/dojinkimm/go-grpc-example/data"
-	pb "github.com/dojinkimm/go-grpc-example/user"
+	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
 )
 
 const portNumber = "9000"
 
 type userServer struct {
-	pb.UnimplementedUserServer
+	userpb.UnimplementedUserServer
 }
 
 // GetUser returns user message by user_id
-func (s *userServer) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (s *userServer) GetUser(ctx context.Context, req *userpb.GetUserRequest) (*userpb.GetUserResponse, error) {
 	userID := req.UserId
 
-	var userMessage *pb.UserMessage
-	for _, u := range data.UserData {
+	var userMessage *userpb.UserMessage
+	for _, u := range data.Users {
 		if u.UserId != userID {
 			continue
 		}
@@ -322,31 +322,31 @@ func (s *userServer) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.G
 		break
 	}
 
-	return &pb.GetUserResponse{
+	return &userpb.GetUserResponse{
 		UserMessage: userMessage,
 	}, nil
 }
 
 // ListUsers returns all user messages
-func (s *userServer) ListUsers(ctx context.Context, req *pb.ListUsersRequest) (*pb.ListUsersResponse, error) {
-	userMessages := make([]*pb.UserMessage, len(data.UserData))
-	for i, u := range data.UserData {
+func (s *userServer) ListUsers(ctx context.Context, req *userpb.ListUsersRequest) (*userpb.ListUsersResponse, error) {
+	userMessages := make([]*userpb.UserMessage, len(data.Users))
+	for i, u := range data.Users {
 		userMessages[i] = u
 	}
 
-	return &pb.ListUsersResponse{
+	return &userpb.ListUsersResponse{
 		UserMessages: userMessages,
 	}, nil
 }
 
-func main(){
-	lis, err := net.Listen("tcp", ":" + portNumber)
+func main() {
+	lis, err := net.Listen("tcp", ":"+portNumber)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterUserServer(grpcServer, &userServer{}) // user service를 gRPC server에 등록하는 부분
+	userpb.RegisterUserServer(grpcServer, &userServer{})
 
 	log.Printf("start gRPC server on %s port", portNumber)
 	if err := grpcServer.Serve(lis); err != nil {
@@ -363,12 +363,12 @@ func main(){
 gRPC server에서 정의한 user 서비스를 사용하도록 만드는 것은 매우 간단하다. gRPC server에 정의한 user 서비스를 사용하도록 만드는 함수가 이미 컴파일된 `user_grpc.pb.go` 파일에 존재한다. `RegisterUserServer` 함수를 가져와서 user 서비스를 등록하면 된다. 이 작업이 끝나면 아주 간단하게 user 서비스를 담당하는 gRPC server가 생성되는 것이다. 
 ```go
 type userServer struct {
-	pb.UnimplementedUserServer
+	userpb.UnimplementedUserServer
 }
 
 ...
 grpcServer := grpc.NewServer()
-pb.RegisterUserServer(grpcServer, &userServer{})
+userpb.RegisterUserServer(grpcServer, &userServer{})
 ...
 ```
 
@@ -376,10 +376,10 @@ pb.RegisterUserServer(grpcServer, &userServer{})
 
 ```go
 // GetUser returns user message by user_id
-func (s *userServer) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (s *userServer) GetUser(ctx context.Context, req *userpb.GetUserRequest) (*userpb.GetUserResponse, error) {
 	userID := req.UserId
 
-	var userMessage *pb.UserMessage
+	var userMessage *userpb.UserMessage
 	for _, u := range data.UserData {
 		if u.UserId != userID {
 			continue
@@ -388,19 +388,19 @@ func (s *userServer) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.G
 		break
 	}
 
-	return &pb.GetUserResponse{
+	return &userpb.GetUserResponse{
 		UserMessage: userMessage,
 	}, nil
 }
 
 // ListUsers returns all user messages
-func (s *userServer) ListUsers(ctx context.Context, req *pb.ListUsersRequest) (*pb.ListUsersResponse, error) {
+func (s *userServer) ListUsers(ctx context.Context, req *userpb.ListUsersRequest) (*userpb.ListUsersResponse, error) {
 	userMessages := make([]*pb.UserMessage, len(data.UserData))
 	for i, u := range data.UserData {
 		userMessages[i] = u
 	}
 
-	return &pb.ListUsersResponse{
+	return &userpb.ListUsersResponse{
 		UserMessages: userMessages,
 	}, nil
 }
