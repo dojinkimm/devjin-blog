@@ -306,7 +306,7 @@ import (
 const portNumber = "9000"
 
 type userServer struct {
-	userpb.UnimplementedUserServer
+	userpb.UserServer
 }
 
 // GetUser returns user message by user_id
@@ -363,7 +363,7 @@ func main() {
 gRPC server에서 정의한 user 서비스를 사용하도록 만드는 것은 매우 간단하다. gRPC server에 정의한 user 서비스를 사용하도록 만드는 함수가 이미 컴파일된 `user_grpc.pb.go` 파일에 존재한다. `RegisterUserServer` 함수를 가져와서 user 서비스를 등록하면 된다. 이 작업이 끝나면 아주 간단하게 user 서비스를 담당하는 gRPC server가 생성되는 것이다. 
 ```go
 type userServer struct {
-	userpb.UnimplementedUserServer
+	userpb.UserServer
 }
 
 ...
