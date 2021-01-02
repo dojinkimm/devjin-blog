@@ -263,7 +263,7 @@ func GetUserClient(serviceHost string) userpb.UserClient {
 
 다른 하나인 `WithBlock`은 connection이 맺어지기 전까지 block을 해놓는 옵션이다. 만약 connection이 당장 맺어지지 않아도 된다면 이 옵션을 제거해도 된다. 이 옵션이 없다면 default로는 백그라운드에서 connection이 이뤄지게 된다.
 
-더 많은 dial option들이 존재하지만, 현재 예제에서는 위 2개의 옵션들만 있어도 충분하기 때문에 다른 option들은 추가하지 않았다. 다양한 dial option들에 대한 사용법 및 설명은 다른 블로그 글에서 설명하려고 한다.
+더 많은 dial option들이 존재하지만, 현재 예제에서는 위 2개의 옵션들만 있어도 충분하기 때문에 다른 option들은 추가하지 않았다.
 
 위 step들을 거치고 나면 이제 `Post` gRPC server는 `User` gRPC server와 통신할 수 있게 되었다. 이제 `Post`의 rpc내에서 유저의 정보를 갖고 오려면 어떻게 해야하는지 설명하려고 한다.
 
