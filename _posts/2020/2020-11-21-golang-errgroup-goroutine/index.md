@@ -4,7 +4,8 @@ date: 2020-11-21
 tags:
   - Golang
 keywords:
-  - golang
+  - Golang
+  - go
   - goroutine
   - errgroup
   - package

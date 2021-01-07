@@ -4,7 +4,8 @@ date: 2020-11-06
 tags:
   - Golang
 keywords:
-  - golang
+  - Golang
+  - go
   - context
   - package
 thumbnail: './main.png'

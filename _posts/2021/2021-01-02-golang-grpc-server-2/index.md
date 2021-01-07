@@ -7,7 +7,9 @@ tags:
   - protobuf
 keywords:
   - Golang
+  - go
   - gRPC
+  - grpc
   - protobuf
   - grpc-gateway
   - grpc-middleware

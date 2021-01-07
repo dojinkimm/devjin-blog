@@ -5,6 +5,7 @@ tags:
   - Golang
 keywords:
   - golang
+  - go
   - protobuf
 ---
 
