@@ -34,7 +34,7 @@ thumbnail: './main.png'
 **Contents**
 
 1. [Golang gRPC server 구축하기 (1) - gRPC란 무엇인가?](https://devjin-blog.com/golang-grpc-server-1/)
-2. [Golang gRPC server 구축하기 (2) - gRPC server 파헤쳐보기]((https://devjin-blog.com/golang-grpc-server-2/))
+2. [Golang gRPC server 구축하기 (2) - gRPC server 파헤쳐보기](https://devjin-blog.com/golang-grpc-server-2/)
 3. Golang gRPC server 구축하기 (3) - RESTful하게 gRPC server와 통신하기
 4. Golang gRPC server 구축하기 (4) - gRPC middleware란?
 
@@ -54,7 +54,7 @@ Server간 gRPC통신 하는 예제를 하나 만들어서 microservice architect
 package data
 
 import (
-	postpb "github.com/dojinkimm/go-grpc-example/protos/post"
+	postpb "github.com/dojinkimm/go-grpc-example/protos/v1/post"
 )
 
 type PostData struct {
@@ -109,8 +109,8 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/dojinkimm/go-grpc-example/data"
-	postpb "github.com/dojinkimm/go-grpc-example/protos/post"
-	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
+	postpb "github.com/dojinkimm/go-grpc-example/protos/v1/post"
+	userpb "github.com/dojinkimm/go-grpc-example/protos/v1/user"
 	client "github.com/dojinkimm/go-grpc-example/simple-client-server"
 )
 
@@ -234,7 +234,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
+	userpb "github.com/dojinkimm/go-grpc-example/protos/v1/user"
 )
 
 var (

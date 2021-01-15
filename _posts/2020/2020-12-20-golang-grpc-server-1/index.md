@@ -27,7 +27,7 @@ gRPC 개념 정리부터 gRPC로 통신하는 Golang server를 구축하는 것�
 **Contents** 
 
 1. [Golang gRPC server 구축하기 (1) - gRPC란 무엇인가?](https://devjin-blog.com/golang-grpc-server-1/)
-2. [Golang gRPC server 구축하기 (2)- gRPC server 파헤쳐보기]((https://devjin-blog.com/golang-grpc-server-2/))
+2. [Golang gRPC server 구축하기 (2)- gRPC server 파헤쳐보기](https://devjin-blog.com/golang-grpc-server-2/)
 3. Golang gRPC server 구축하기 (3) - RESTful하게 gRPC server와 통신하기
 4. Golang gRPC server 구축하기 (4) - gRPC middleware란?
 
@@ -189,12 +189,12 @@ User 서비스는 두 개의 rpc를 갖도록 구현할 예정이다.
 2. `ListUsers`는 서비스에 존재하는 모든 유저들의 유저 정보를 리턴하는 rpc이다
 
 ```protobuf
-// protos/user/user.proto
+// protos/v1/user/user.proto
 syntax = "proto3";
 
-package user;
+package v1.user;
 
-option go_package = "github.com/dojinkimm/go-grpc-example/protos/user";
+option go_package = "github.com/dojinkimm/go-grpc-example/protos/v1/user";
 
 service User {
     rpc GetUser(GetUserRequest) returns (GetUserResponse);
@@ -237,7 +237,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 protoc -I=. \
 	    --go_out . --go_opt paths=source_relative \
 	    --go-grpc_out . --go-grpc_opt paths=source_relative \
-	    protos/user/user.proto
+	    protos/v1/user/user.proto
 ```
 
 컴파일이 되면 `user.proto`파일이 있는 폴더에 `user.pb.go`와 `user_grpc.pb.go` 파일들이 함께 생성된다.
@@ -253,7 +253,7 @@ User 서비스를 정의했으니 이제, 서비스를 담당하는 microservice
 package data
 
 import (
-	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
+	userpb "github.com/dojinkimm/go-grpc-example/protos/v1/user"
 )
 
 var UserData = []*userpb.UserMessage{
@@ -302,7 +302,7 @@ import (
 	"google.golang.org/grpc"
 
 	"github.com/dojinkimm/go-grpc-example/data"
-	userpb "github.com/dojinkimm/go-grpc-example/protos/user"
+	userpb "github.com/dojinkimm/go-grpc-example/v1/user"
 )
 
 const portNumber = "9000"
