@@ -61,15 +61,15 @@ thumbnail: './main.png'
 
 공식 도큐먼트는 gRPC gateway를 다음과 같이 소개하고 있다:
 
-gRPC-Gateway helps you to provide your APIs in both gRPC and RESTful style at the same time.
+> gRPC-Gateway helps you to provide your APIs in both gRPC and RESTful style at the same time.
 
-gRPC-Gateway는 API를 동시에 gRPC와 RESTful style로 제공할 수 있도록 도와준다
+> gRPC-Gateway는 API를 동시에 gRPC와 RESTful style로 제공할 수 있도록 도와준다
 
 Github Repository에서는 gRPC gateway가 왜 필요한지에 대한 배경을 다음과 같이 정리하고 있다:
 
-(중략) However, you might still want to provide a traditional RESTful JSON API as well. Reasons can range from maintaining backward-compatibility, supporting languages or clients that are not well supported by gRPC, to simply maintaining the aesthetics and tooling involved with a RESTful JSON architecture. 
+> (중략) However, you might still want to provide a traditional RESTful JSON API as well. Reasons can range from maintaining backward-compatibility, supporting languages or clients that are not well supported by gRPC, to simply maintaining the aesthetics and tooling involved with a RESTful JSON architecture. 
 
-그럼에도 기존에 일반적으로 사용되는 RESTful JSON API를 제공하고 싶은 경우가 있을 것이다. 이유는 다양할 수 있다 하위호환성 보장부터, gRPC에서 지원되지 않는 client나 언어들을 지원, 그리고RESTful JSON 아키텍처를 사용하고 있는 툴들과 그 철학들을 유지하는 것까지. 
+> 그럼에도 기존에 일반적으로 사용되는 RESTful JSON API를 제공하고 싶은 경우가 있을 것이다. 이유는 다양할 수 있다 하위호환성 보장부터, gRPC에서 지원되지 않는 client나 언어들을 지원, 그리고RESTful JSON 아키텍처를 사용하고 있는 툴들과 그 철학들을 유지하는 것까지. 
 
 gRPC gateway가 무엇이고 왜 만들어졌는지에 대한 개념을 조금 이해했으니, 어떻게 동작하는지 설명해보려고 한다. 
 
@@ -350,7 +350,7 @@ go run simple-grpc-gateway/grpc-gateway/main.go
 
 `ListUsers` rpc
 
-![result2](./result1.png)
+![result2](./result2.png)
 
 # 🙇‍♂️ 마무리
 
