@@ -35,7 +35,7 @@ thumbnail: './main.png'
 
 1. [Golang gRPC server 구축하기 (1) - gRPC란 무엇인가?](https://devjin-blog.com/golang-grpc-server-1/)
 2. [Golang gRPC server 구축하기 (2) - gRPC server 파헤쳐보기](https://devjin-blog.com/golang-grpc-server-2/)
-3. Golang gRPC server 구축하기 (3) - RESTful하게 gRPC server와 통신하기
+3. [Golang gRPC server 구축하기 (3) - RESTful하게 gRPC server와 통신하기](https://devjin-blog.com/golang-grpc-server-3/)
 4. Golang gRPC server 구축하기 (4) - gRPC middleware란?
 
 # 새로운 Protobuf service 정의하기
