@@ -3,8 +3,18 @@ import Typography from 'typography';
 const typography = new Typography({
   baseFontSize: '16px',
   baseLineHeight: 1.666,
-  headerFontFamily: ['Nanum Gothic'],
-  bodyFontFamily: ['Nanum Gothic'],
+  headerFontFamily: [
+    "Robert Mono",
+    "Inconsolata",
+    "Nanum Gothic",
+    "Avenir Next",
+    "Helvetica Neue",
+    "Segoe UI",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
+  ],
+  bodyFontFamily: ["Robert Mono", "Inconsolata", "Nanum Gothic"],
 });
 
 const googleFonts: { name: string; bold?: number[] }[] = [
