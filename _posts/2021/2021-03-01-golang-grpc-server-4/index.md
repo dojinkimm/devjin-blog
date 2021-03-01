@@ -20,7 +20,7 @@ thumbnail: './main.png'
 
 ![main](./main.png)
 
-이번 블로그 글은 Golang gRPC server 구축하기의 마지막 글이다 🎉  지난 글들에서
+이번 블로그 글은 Golang gRPC server 구축하기의 마지막 글이다 🎉    지난 글들에서
 
 - gRPC의 개념
 - gRPC의 장단점과 왜 요새 관심을 많이 받고 있는지
@@ -30,9 +30,7 @@ thumbnail: './main.png'
 - gRPC server 구성할 때 유용한 feature들
 - gRPC server와 RESTful하게 통신하기 위한 gRPC gateway 사용법
 
-들에 대해서 다뤘다. 
-
-이번 글에서는 gRPC server를 구성할때 유용한 middleware들에 대해 소개하려고 한다. 
+들에 대해서 다뤘고, 이번 글에서는 gRPC server를 구성할때 유용한 middleware들에 대해 소개하려고 한다. 
 
 **Contents**
 
@@ -190,7 +188,7 @@ Server를 run한 다음에 rpc를 호출하게 되면 밑과 같이 customMiddle
 
 ## Auth
 
-grpc_auth는 이름에서 알 수 있듯이 인증관련 middleware이다. grpc_auth에서 알아서 요청으로부터 Authorization 헤더의 값을 읽어들이고 토큰 값만 빼네서 전달해준다. 그러면 custom 함수에서는 그 토큰 값을 검증하는 코드만 작성하면 되는 것이다. 
+grpc auth는 이름에서 알 수 있듯이 인증관련 middleware이다. grpc auth에서 알아서 요청으로부터 Authorization 헤더의 값을 읽어들이고 토큰 값만 빼네서 전달해준다. 그러면 custom 함수에서는 그 토큰 값을 검증하는 코드만 작성하면 되는 것이다. 
 
 ```go
 func customAuthFunc(ctx context.Context) (context.Context, error) {
@@ -227,7 +225,7 @@ Authorization 헤더에 검증에 성공할 수 있는 valid한 토큰 값을 �
 ![auth2](./auth2.png)
 
 
-이처럼 grpc_auth를 사용한다면, 매번 모든 rpc에다 토큰을 인증하는 로직을 넣을 필요 없이 client가 요청을 할때마다 middleware에서 알아서 토큰을 검증할 수 있게 되는 것이다. *~~중복 없는 코드 만세~~*
+이처럼 grpc auth를 사용한다면, 매번 모든 rpc에다 토큰을 인증하는 로직을 넣을 필요 없이 client가 요청을 할때마다 middleware에서 알아서 토큰을 검증할 수 있게 되는 것이다. *~~중복 없는 코드 만세~~*
 
 ## Logging
 
@@ -258,7 +256,7 @@ grpcServer := grpc.NewServer(
 
 ![logging2](./logging2.png)
 
-### Recovery
+## Recovery
 
 Recovery는 rpc내에서 panic이 일어나도 서버가 종료되지 않게 한다. Golang에서는 panic을 호출하면 프로그램이 자동 종료된다. 하지만, 실제 서비스를 하는 서버에서는 에러가 한번 났다고 서버 프로그램이 죽어버리면 안된다. 오히려 에러가 나면 에러가 계속 나도록 유지하면서 동시에 어떤 에러인지 로깅을 해서, 어느 부분이 문제인지 빠르게 인지해서 그 에러를 고치는 것이 이상적인 방법이다. 
 
