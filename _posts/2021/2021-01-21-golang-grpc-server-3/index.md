@@ -29,9 +29,9 @@ thumbnail: './main.png'
 - gRPC server의 형식들
 - gRPC server 구성할 때 유용한 feature들
 
-들에 대해서 다뤘다. 
+들에 대해서 다뤘다.
 
-이번 글에서는 gRPC server와 HTTP로 RESTful하게 통신할 수 있게 해주는 gRPC gateway에 대해 설명하려고 한다. 
+이번 글에서는 gRPC server와 HTTP로 RESTful하게 통신할 수 있게 해주는 gRPC gateway에 대해 설명하려고 한다.
 
 **Contents**
 
@@ -41,7 +41,7 @@ thumbnail: './main.png'
 
 3. [Golang gRPC server 구축하기 (3) - RESTful하게 gRPC server와 통신하기](https://devjin-blog.com/golang-grpc-server-3/)
 
-4. Golang gRPC server 구축하기 (4) - gRPC middleware란?
+4. [Golang gRPC server 구축하기 (4) - gRPC middleware란?](https://devjin-blog.com/golang-grpc-server-4/)
 
 # 왜 gRPC server를 RESTful하게 통신하게 해야 하는가?
 
@@ -67,32 +67,32 @@ thumbnail: './main.png'
 
 Github Repository에서는 gRPC gateway가 왜 필요한지에 대한 배경을 다음과 같이 정리하고 있다:
 
-> (중략) However, you might still want to provide a traditional RESTful JSON API as well. Reasons can range from maintaining backward-compatibility, supporting languages or clients that are not well supported by gRPC, to simply maintaining the aesthetics and tooling involved with a RESTful JSON architecture. 
+> (중략) However, you might still want to provide a traditional RESTful JSON API as well. Reasons can range from maintaining backward-compatibility, supporting languages or clients that are not well supported by gRPC, to simply maintaining the aesthetics and tooling involved with a RESTful JSON architecture.
 
-> 그럼에도 기존에 일반적으로 사용되는 RESTful JSON API를 제공하고 싶은 경우가 있을 것이다. 이유는 다양할 수 있다 하위호환성 보장부터, gRPC에서 지원되지 않는 client나 언어들을 지원, 그리고RESTful JSON 아키텍처를 사용하고 있는 툴들과 그 철학들을 유지하는 것까지. 
+> 그럼에도 기존에 일반적으로 사용되는 RESTful JSON API를 제공하고 싶은 경우가 있을 것이다. 이유는 다양할 수 있다 하위호환성 보장부터, gRPC에서 지원되지 않는 client나 언어들을 지원, 그리고RESTful JSON 아키텍처를 사용하고 있는 툴들과 그 철학들을 유지하는 것까지.
 
-gRPC gateway가 무엇이고 왜 만들어졌는지에 대한 개념을 조금 이해했으니, 어떻게 동작하는지 설명해보려고 한다. 
+gRPC gateway가 무엇이고 왜 만들어졌는지에 대한 개념을 조금 이해했으니, 어떻게 동작하는지 설명해보려고 한다.
 
 ![gateway1](./gateway1.png)
 
 gRPC gateway도 protobuf를 기반으로 작동을 한다. Protobuf 컴파일러인 `protoc` 로 gRPC server에서 사용하기 위한 message들 및 서비스를 생성했던 것 처럼, `protoc`로 gRPC gateway에서 사용할 수 있는 message들과 서비스를 생성해주는 것이다. gRPC gateway에서는 protobuf 파일을 읽고 HTTP JSON을 protobuf로 변환한 뒤에 gRPC로 reverse proxy해준다.
 
-예를 들어, 외부에서 내 gRPC server로 JSON형태인 message를 요청했으면, 
+예를 들어, 외부에서 내 gRPC server로 JSON형태인 message를 요청했으면,
 
 ```json
 PUT /v1/user/123/profile
 {
    "email": "abc@hanmail.net"
-} 
+}
 ```
 
 gRPC gateway에서는 이 JSON을 읽고나서 gRPC 서비스에서 정의된 message 형식에 맞춰서 데이터를 잘 protobuf로 변환한 다음에 내 gRPC server에 gRPC로 message를 보낸다. 그렇기 때문에 gRPC server는 기존처럼 protobuf 형태의 message를 읽고 처리를 하는 것이다.
 
-reverse proxy에 대해 더 잘 이해하고 싶으면 [Reverse Proxy, Forward Proxy (프록시란?)](https://cornswrold.tistory.com/404) 블로그 글을 읽어보는 것을 추천한다. 
+reverse proxy에 대해 더 잘 이해하고 싶으면 [Reverse Proxy, Forward Proxy (프록시란?)](https://cornswrold.tistory.com/404) 블로그 글을 읽어보는 것을 추천한다.
 
 # RESTful하게 통신 가능한 gRPC server 정의하기
 
-gRPC-gateway를 사용한 server를 구현하기 위해서는 준비 과정이 조금 필요하다. 준비과정에 대한 자세한 영문으로 된 내용은 [gRPC-gateway repository](https://github.com/grpc-ecosystem/grpc-gateway)에서 볼 수 있고, 이 섹션에서는 repository README에 있는대로 진행해보려고 한다. 
+gRPC-gateway를 사용한 server를 구현하기 위해서는 준비 과정이 조금 필요하다. 준비과정에 대한 자세한 영문으로 된 내용은 [gRPC-gateway repository](https://github.com/grpc-ecosystem/grpc-gateway)에서 볼 수 있고, 이 섹션에서는 repository README에 있는대로 진행해보려고 한다.
 
 1. gRPC gateway용 protobuf 컴파일러 설치하기
 
@@ -119,7 +119,7 @@ go install \
 
 3. 정의한 `proto` 서비스에 HTTP로 접근 가능한 Endpoint 추가해주기
 
-정의된 `proto` 서비스에 `google/api/annotations.proto`를 import해준다. 이 3rd 파티 protobuf 파일을 제대로 import해서 사용하기 위해서는 이 파일을 repository에 갖고와야 한다. 그리고  `annotations.proto`와 `http.proto`를 똑같이 생성해준다 (해당 파일들은 [여기서](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google/api) 찾을 수 있다). 여기서 가장 중요한 부분은, 해당 **파일들을 `google/api`라는 폴더에 저장하는 것이고 + repository에 가장 top level 위치시키는 것**이다.
+정의된 `proto` 서비스에 `google/api/annotations.proto`를 import해준다. 이 3rd 파티 protobuf 파일을 제대로 import해서 사용하기 위해서는 이 파일을 repository에 갖고와야 한다. 그리고 `annotations.proto`와 `http.proto`를 똑같이 생성해준다 (해당 파일들은 [여기서](https://github.com/grpc-ecosystem/grpc-gateway/tree/master/third_party/googleapis/google/api) 찾을 수 있다). 여기서 가장 중요한 부분은, 해당 **파일들을 `google/api`라는 폴더에 저장하는 것이고 + repository에 가장 top level 위치시키는 것**이다.
 
 (😢 이 부분을 읽지 않고 넘어가서.... 자꾸 `annotations.proto` 파일을 찾을 수 없다는 에러를 마주했다)
 
@@ -141,18 +141,18 @@ service User {
     rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {
         option (google.api.http) = {
             get: "/v2/users" // 추가된 부분
-        }; 
+        };
     }
 }
 ```
 
 3rd 파티 파일을 추가해주면 service의 rpc내에서 `google.api.http` option을 사용할 수 있게 된다. 이 option이 바로 **gRPC service의 rpc에 HTTP로 접근할 수 있는 HTTP endpoint를 제공해주는 옵션**이다. 옵션 안에는 enpoint와 이 enpoint에 접근할 HTTP method를 정의해주면 된다. 예를 들어,`GetUser`는 user_id로 하나의 유저 정보를 리턴하는 rpc이기 때문에 GET HTTP method를 추가했고, 버전2이기 때문에 `/v2/users/{user_id}`로 정의했다.
 
-💁‍♂️  HTTP endpoint를 어떻게 RESTful하게 정의할지 모른다면 [[Network] REST란? REST API란? RESTful이란?](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html) 블로그 글을 참고하면 좋다. 
+💁‍♂️ HTTP endpoint를 어떻게 RESTful하게 정의할지 모른다면 [[Network] REST란? REST API란? RESTful이란?](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html) 블로그 글을 참고하면 좋다.
 
 4. `proto` 서비스 컴파일하기
 
-HTTP로 접근 가능한 enpoint를 생성했다면 이제 컴파일을 할 시간이다 🎉.  
+HTTP로 접근 가능한 enpoint를 생성했다면 이제 컴파일을 할 시간이다 🎉.
 
 3rd 파티 `proto` 파일을 repository에 잘 저장했고, service에 `google.api.http` option으로 http endpoint를 잘 생성하고 이 명령어를 입력하면 컴파일이 되고 `user.pb.gw.go` 파일이 생성된다.
 
@@ -170,11 +170,11 @@ generate-user-v2-gateway-proto:
 
 # RESTful하게 통신 가능한 gRPC server 구현하기
 
-gRPC gateway의 역할을 다시 정리하자면, client로부터 HTTP JSON 정보를 받고, 이 정보를 gRPC server 서비스의 형식대로 protobuf로 변환한 다음에 그 message를 gRPC server에 gRPC로 보내는 것이다. 
+gRPC gateway의 역할을 다시 정리하자면, client로부터 HTTP JSON 정보를 받고, 이 정보를 gRPC server 서비스의 형식대로 protobuf로 변환한 다음에 그 message를 gRPC server에 gRPC로 보내는 것이다.
 
 ![gateway2](./gateway2.png)
 
-그림에서 보면 알 수 있듯이 client는 `9000` port로 HTTP 요청을 하고 gRPC gateway는 HTTP JSON 요청을 protobuf로 변환한 다음에 `9001` port로 gRPC로 요청한다. Port가 2개나 필요하기 때문에 2개의 서버가 띄워져있어야 한다는걸 알 수 있다. 
+그림에서 보면 알 수 있듯이 client는 `9000` port로 HTTP 요청을 하고 gRPC gateway는 HTTP JSON 요청을 protobuf로 변환한 다음에 `9001` port로 gRPC로 요청한다. Port가 2개나 필요하기 때문에 2개의 서버가 띄워져있어야 한다는걸 알 수 있다.
 
 ### **gRPC server**
 
@@ -236,7 +236,7 @@ func main(){
 }
 ```
 
-가장 먼저 `context` 패키지에 있는 ctx를 선언해준다. 이 `context`는 gRPC gateway와 gRPC server를 이어주는 맥락이라고 생각하면 된다. 이 값을 밑에 `RegisterUserHandlerFromEndPoint`에 주입해주는데, 이로 인해 gRPC gateway는 gRPC server에서 context Done 신호가 오면 (맥락을 끊겠다) connection을 끊게 된다.  
+가장 먼저 `context` 패키지에 있는 ctx를 선언해준다. 이 `context`는 gRPC gateway와 gRPC server를 이어주는 맥락이라고 생각하면 된다. 이 값을 밑에 `RegisterUserHandlerFromEndPoint`에 주입해주는데, 이로 인해 gRPC gateway는 gRPC server에서 context Done 신호가 오면 (맥락을 끊겠다) connection을 끊게 된다.
 
 `context`에 대해 더 깊이 알고 싶다면 이전에 작성한 [Go의 context 패키지 이해하기](https://devjin-blog.com/golang-context/) 글을 읽어보는 것을 추천한다.
 
@@ -279,7 +279,7 @@ func WithErrorHandler(fn ErrorHandlerFunc) ServeMuxOption {
 	}
 }
 
-// WithMarshalerOption marshaler에 대한 옵션을 제공해준다. 
+// WithMarshalerOption marshaler에 대한 옵션을 제공해준다.
 func WithMarshalerOption(mime string, marshaler Marshaler) ServeMuxOption {
 	return func(mux *ServeMux) {
 		if err := mux.marshalers.add(mime, marshaler); err != nil {
@@ -289,7 +289,7 @@ func WithMarshalerOption(mime string, marshaler Marshaler) ServeMuxOption {
 }
 ```
 
-mux를 선언하고 나서는 option을 선언해준다. Option은 지난 블로그 글을 봤다면 낯이 익을 것이다. Client(여기서는 gRPC gateway)와 Server(여기서는 gRPC server)가 연결을 맺을 때 추가할 수 있는 옵션들에 대한 부분이다. 
+mux를 선언하고 나서는 option을 선언해준다. Option은 지난 블로그 글을 봤다면 낯이 익을 것이다. Client(여기서는 gRPC gateway)와 Server(여기서는 gRPC server)가 연결을 맺을 때 추가할 수 있는 옵션들에 대한 부분이다.
 
 옵션들을 정의하고 나면 이제 gRPC gateway를 사용하기 위해 등록하는 일만 남았다. 위에서 proto 파일을 gRPC gateway에서 사용할 수 있도록 컴파일 했으면 `RegisterUserHandlerFromEndpoint` 를 사용할 수 있게 된다. 이 함수는 총 4가지의 parmeter를 받아들인다.
 
@@ -326,7 +326,7 @@ if err := http.ListenAndServe(":"+portNumber, mux); err != nil {
 ...
 ```
 
-위 작업들만 진행하면 HTTP JSON 요청을 받아들이는 gRPC gateway server를 생성할 수 있게 된다. 
+위 작업들만 진행하면 HTTP JSON 요청을 받아들이는 gRPC gateway server를 생성할 수 있게 된다.
 
 ### gRPC + gateway 실행하기
 
@@ -354,6 +354,6 @@ go run simple-grpc-gateway/grpc-gateway/main.go
 
 # 🙇‍♂️ 마무리
 
-Golang gRPC server 구축하기 시리즈의 3편이 끝났다. 이번 포스트에서는 gRPC server에서 RESTful한 HTTP JSON 요청을 받아들일 수 있게 해주는 gRPC gateway에 대해서 다뤄봤다. gRPC와 HTTP 요청과 응답을 줄 수 있는 대단한 서버를 만든 것이다 🤩. 다음 (드디어 마지막) 포스트에서는 gRPC server에 사용하기에 유용한 middleware들에 대해서 다뤄볼 예정이다. 
+Golang gRPC server 구축하기 시리즈의 3편이 끝났다. 이번 포스트에서는 gRPC server에서 RESTful한 HTTP JSON 요청을 받아들일 수 있게 해주는 gRPC gateway에 대해서 다뤄봤다. gRPC와 HTTP 요청과 응답을 줄 수 있는 대단한 서버를 만든 것이다 🤩. 다음 (드디어 마지막) 포스트에서는 gRPC server에 사용하기에 유용한 middleware들에 대해서 다뤄볼 예정이다.
 
 이 예제에 나오는 모든 코드들은 [Github Repository](https://github.com/dojinkimm/go-grpc-example)에 공개되어 있다.
