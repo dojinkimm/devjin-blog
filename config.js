@@ -17,7 +17,7 @@ module.exports = {
   company: '@Banksalad',
   location: 'Korea',
   email: 'dojinkim119@gmail.com',
-  website: 'https://devjin-blog.com',
+  resume: 'https://www.notion.so/henrystudy/Henry-Kim-s-Resume-af138c53c97c4e4c91c5177d01e03e7b',
   linkedin: 'https://www.linkedin.com/in/dojin-henry-kim-64080a158/',    
   facebook: 'https://www.facebook.com/dojin1',                                
   instagram: '',                                    // ex.'https://www.instagram.com/junhobaik'

@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { FiFacebook, FiGithub, FiLinkedin, FiMail, FiGlobe } from 'react-icons/fi';
+import { FiFacebook, FiGithub, FiLinkedin, FiMail, FiLink } from 'react-icons/fi';
+import { SiAboutDotMe } from "react-icons/si";
+
 import './bio.scss';
 const config = require('../../../config');
 
 const Bio = () => {
-  const { comment, email, website, linkedin, facebook, github } = config;
+  const { comment, email, resume, linkedin, facebook, github } = config;
 
   return (
     <div className="bio">
@@ -23,8 +25,8 @@ const Bio = () => {
         <a href={email} target="_blank">
           <FiMail className="icon"/>
         </a>
-        <a href={website} target="_blank">
-          <FiGlobe className="icon"/>
+        <a href={resume} target="_blank">
+          <SiAboutDotMe className="icon"/>
         </a>
       </div>
     </div>
