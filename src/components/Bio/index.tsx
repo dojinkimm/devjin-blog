@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { FiFacebook, FiGithub, FiLinkedin, FiMail, FiLink } from 'react-icons/fi';
-import { SiAboutDotMe } from "react-icons/si";
-
+import { FiFacebook, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { SiAboutDotMe } from 'react-icons/si';
 import './bio.scss';
 const config = require('../../../config');
 
