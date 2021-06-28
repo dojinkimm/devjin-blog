@@ -110,7 +110,7 @@ Flutter로 개발한 Web을  [dojinkimm.github.io/wedding_invitation_flutter](ht
 
 공개된 모바일 청첩장 코드는 [https://github.com/dojinkimm/wedding_invitation_flutter](https://github.com/dojinkimm/wedding_invitation_flutter)에서 보실 수 있습니다.
 
-References
+### References
 
 - [Getting Started Flutter Web](https://flutter.dev/docs/get-started/web)
 - [Flutter Web github actions](https://medium.com/flutter-community/flutter-web-github-actions-github-pages-dec8f308542a)
