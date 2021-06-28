@@ -16,12 +16,11 @@ thumbnail: './main.png'
 
 ![main](./main.png)
 
-
 개발자라면 한 번쯤은 "결혼할 때 모바일 청첩장은 내가 직접 개발해봐야지" 라는 생각을 해봤을 겁니다. 그리고 올해 저에게 결혼이라는 모바일 청접장을 직접 개발해볼 기회(?)가 왔습니다. 
 
 모바일 청첩장을 어떤 언어나 프레임워크로 모바일 청첩장을 개발할까 고민하던 중에 구글에서 Flutter 2.0을 런칭한 것을 보게 되었습니다. 예전에 Flutter로 앱을 개발한 적이 있었지만 그 때는 Flutter가 막 세상에 나온 때여서 Web의 기능이 너무 허접해서 웹은 개발을 시도해보지도 않았었습니다. Flutter 2.0 영상을 보고 나서는 Flutter Web이 꽤 사용할만한 수준이 된 것 같아서 모바일 청첩장은 Flutter로 개발하고 + 호스팅은 Github Pages를 활용하기로 결정했습니다. 
 
-Flutter Web으로 어떻게 모바일 청첩장을 개발했고, 어떻게 Github Pages에 호스팅했고, 개발하면서 느꼈던 Flutter Web에 대한 생각을 나누려고 합니다. 실제로 제가 사용한 모바일 청첩장은 다른 도메인과 + Private Repository에 구현했습니다 (지도 활용을 위해 구글 API Key등을 embed해서 사용했기에 private으로 돌렸습니다). 이 글에서는 작업한 것을 재구현해서 공유하려고 합니다.
+Flutter Web으로 어떻게 모바일 청첩장을 개발했고, 어떻게 Github Pages에 호스팅했고, 개발하면서 느꼈던 Flutter Web에 대한 생각을 나눠보려고 합니다. 실제로 제가 사용한 모바일 청첩장은 다른 도메인과 + Private Repository에 구현했습니다 (지도 활용을 위해 구글 API Key등을 embed해서 사용했기에 private으로 돌렸습니다). 이 글에서는 작업한 것을 재구현해서 공유합니다. 
 
 ⚠️ NOTE ⚠️: 이 글을 따라하며 Flutter로 Web 모바일 청첩장을 개발해보기 위해서는 Flutter가 미리 컴퓨터에 설치되어있어야 합니다.
 
@@ -107,7 +106,7 @@ jobs:
 
 ⚠️ NOTE ⚠️ : Default로 생성된 flutter 프로젝트를 바로 github page로 올릴 때 에러가 나는 현상이 있습니다. serviceWorker 관련 에러인데, 따로 원인은 파악하지 않고 단순하게 index.html에 불필요한 부분들을 다 제거해서 문제를 해결했습니다.
 
-Flutter로 개발한 Web을  [dojinkimm.github.io/wedding_invitation_flutter](http://dojinkimm.github.io/wedding_invitation_flutter라는) 에서 볼 수 있게 됩니다. 이제 모바일 청첩장을 꾸밀일만 남았는데 그 부분은 다음 글에서 다루려고 합니다. 🙇‍♂️
+Flutter로 개발한 Web을  [dojinkimm.github.io/wedding_invitation_flutter](http://dojinkimm.github.io/wedding_invitation_flutter) 에서 볼 수 있게 됩니다. 이제 모바일 청첩장을 꾸밀일만 남았는데 그 부분은 다음 글에서 다루려고 합니다. 🙇‍♂️
 
 공개된 모바일 청첩장 코드는 [https://github.com/dojinkimm/wedding_invitation_flutter](https://github.com/dojinkimm/wedding_invitation_flutter)에서 보실 수 있습니다.
 
