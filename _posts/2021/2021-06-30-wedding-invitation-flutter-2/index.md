@@ -233,7 +233,7 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 ...
 ```
 
-![loadingindicator](https://github.com/dojinkimm/devjin-blog/blob/03b169232bbf1ef9acd97359d53c1c301870a02f/_posts/2021/2021-06-30-wedding-invitation-flutter-2/loadingindicator.gif)
+![loadingindicator](https://github.com/dojinkimm/devjin-blog/blob/_posts/2021/2021-06-30-wedding-invitation-flutter-2/loadingindicator.gif)
 
 ### 6. og Tags
 
@@ -251,7 +251,7 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 
 이렇게 6가지 step을 통해 모바일 청첩장을 마무리 할 수 있었습니다!!!
 
-![wedding_invitation](https://github.com/dojinkimm/devjin-blog/blob/03b169232bbf1ef9acd97359d53c1c301870a02f/_posts/2021/2021-06-30-wedding-invitation-flutter-2/wedding_invitation.gif)
+![wedding_invitation](https://github.com/dojinkimm/devjin-blog/blob/_posts/2021/2021-06-30-wedding-invitation-flutter-2/wedding_invitation.gif)
 
 # 맺음말
 
