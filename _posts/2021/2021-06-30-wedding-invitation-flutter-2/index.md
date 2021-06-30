@@ -290,6 +290,10 @@ Flutter로 모바일 청첩장 Web을 처음 구현해보면서 좋았던 점도
 
 앞으로 어떻게 사용될지 기대를 하게 만들어준 Flutter Web 기술이었습니다. 개발자가 Flutter Web으로 만드는 모바일 청첩장 Part2는 여기서 마무리합니다 :)
 
+> 모바일 청첩장 Flutter Web 코드는 https://github.com/dojinkimm/wedding_invitation_flutter
+모바일 청첩장 링크는 https://dojinkimm.github.io/wedding_invitation_flutter/#/ 에서 볼 수 있습니다 :)
+
+
 ### References
 
 - [Pubspec이란?](https://dart.dev/tools/pub/pubspec)
