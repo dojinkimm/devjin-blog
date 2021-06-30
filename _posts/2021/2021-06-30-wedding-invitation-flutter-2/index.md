@@ -130,21 +130,6 @@ flutter:
 갤러리에서 있는 옆으로 스크롤 부분은 [https://github.com/roughike/page-transformer](https://github.com/roughike/page-transformer) 의 코드를 가져와서 사용했습니다 
 
 
-
-<div>
-  <img align="left" src="./welcome.png">
-  <img align="center" src="./introduction.png">
-  <img align="right" src="./gallery.png">
-</div>
-
-<div>
-  <img align="left" src="./map.png">
-  <img align="center" src="./congratulation.png">
-  <img align="right" src="./credit.png">
-</div>
-
-
-
 ### 4. 지도 추가하기
 
 제가 Flutter Web으로 지도를 추가하려고 할때는 google map 패키지가 제대로 되는 것들이 없었고, naver & kakao map패키지들도 없었습니다. 그래서 iframe으로 google map을 embed해서 사용했습니다.
@@ -179,7 +164,7 @@ Flutter Web이 `main.dart.js`를 불러올때 시간이 꽤나 걸려서 화면�
 
 Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 공백이 뜨는 것이었기 때문에 Loading Indicator는 dart 코드로 작성하는 것이 아니라 HTML/CSS 로 직접 구현해야 했습니다.  이 부분도 디자인 감각이 없어 기존에 존재하는 [css loader](https://loading.io/css/)들을 추가해서 구현했습니다.
 
-```dart
+```html
 ...
 <style>
     .lds-heart {
@@ -248,13 +233,13 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 ...
 ```
 
-![loadingindicator](https://github.com/dojinkimm/devjin-blog/blob/master/_posts/2021/2021-06-30-wedding-invitation-flutter-2/loadingindicator.gif)
+![loadingindicator](https://github.com/dojinkimm/devjin-blog/blob/03b169232bbf1ef9acd97359d53c1c301870a02f/_posts/2021/2021-06-30-wedding-invitation-flutter-2/loadingindicator.gif)
 
 ### 6. og Tags
 
 마지막으로 모바일 청첩장을 외부에 링크로 공유할 것이기 때문에 metadata og tag들을 추가했습니다. 
 
-```dart
+```html
 <meta property="og:title" content="도진❤️채은 결혼식에 초대합니다" />
 <meta property="og:description" content="모바일 청첩장" />
 <meta property="og:type" content="website" />
@@ -266,7 +251,7 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 
 이렇게 6가지 step을 통해 모바일 청첩장을 마무리 할 수 있었습니다!!!
 
-![wedding_invitation](https://github.com/dojinkimm/devjin-blog/blob/master/_posts/2021/2021-06-30-wedding-invitation-flutter-2/wedding_invitation.gif)
+![wedding_invitation](https://github.com/dojinkimm/devjin-blog/blob/03b169232bbf1ef9acd97359d53c1c301870a02f/_posts/2021/2021-06-30-wedding-invitation-flutter-2/wedding_invitation.gif)
 
 # 맺음말
 
