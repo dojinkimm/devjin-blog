@@ -132,15 +132,15 @@ flutter:
 
 
 <div>
-  <img src="./welcome.png">
-  <img src="./introduction.png">
-  <img src="./gallery.png">
+  <img align="left" src="./welcome.png">
+  <img align="center" src="./introduction.png">
+  <img align="right" src="./gallery.png">
 </div>
 
 <div>
-  <img src="./map.png">
-  <img src="./congratulation.png">
-  <img src="./credit.png">
+  <img align="left" src="./map.png">
+  <img align="center" src="./congratulation.png">
+  <img align="right" src="./credit.png">
 </div>
 
 
@@ -248,7 +248,7 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 ...
 ```
 
-![loadingindicator](./loadingindicator.gif)
+![loadingindicator](https://github.com/dojinkimm/devjin-blog/blob/master/_posts/2021/2021-06-30-wedding-invitation-flutter-2/loadingindicator.gif)
 
 ### 6. og Tags
 
@@ -266,7 +266,7 @@ Flutter Web의 코드 자체가 불러와지지 않았기에 하얀색 화면 �
 
 이렇게 6가지 step을 통해 모바일 청첩장을 마무리 할 수 있었습니다!!!
 
-![wedding_invitation](./wedding_invitation.gif)
+![wedding_invitation](https://github.com/dojinkimm/devjin-blog/blob/master/_posts/2021/2021-06-30-wedding-invitation-flutter-2/wedding_invitation.gif)
 
 # 맺음말
 
