@@ -70,7 +70,7 @@ thumbnail: './main.png'
 
 `데이터 엔지니어라면` 시리즈의 첫 글을 작성 완료했다. 이번 글에서는 빅데이터 시대에 들어서게 되면서 많은 관심을 받고 있는 데이터 엔지니어링이란 직무와 데이터 엔지니어링이 왜 필요한지 정리를 했다. 결국, 데이터가 돈이 되는 세상이 되었기 때문에 이런 직무가 생겨났다고 생각한다. 앞으로의 시대는 더 다양하고 많은 데이터들이 쌓일 것이기 때문에 데이터 엔지니어는 풀어야 할 문제들이 더욱 많을 것이다.
 
-### References
+# References
 
 - [https://github.com/datastacktv/data-engineer-roadmap](https://github.com/datastacktv/data-engineer-roadmap)
 - [https://tech.kakao.com/2020/11/30/kakao-data-engineering/](https://tech.kakao.com/2020/11/30/kakao-data-engineering/)
