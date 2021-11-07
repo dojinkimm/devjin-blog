@@ -3,7 +3,7 @@ title: 데이터 엔지니어라면(1) - 데이터 엔지니어링이란?
 date: 2021-08-08
 tags:
   - data-engineering
-  - pipeline
+  - data
 keywords:
   - data-engineering
   - pipeline
