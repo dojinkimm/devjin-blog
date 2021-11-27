@@ -41,7 +41,7 @@ thumbnail: './main.png'
 
 Server간 gRPC통신 하는 예제를 하나 만들어서 microservice architecture에서 어떻게 server들간 통신하는지 설명하려고 한다. 이전 블로그 글에서 유저의 정보를 알려주는 `User` 서비스를 담당하는 gRPC server를 구축했었다. 이 글에서는 `Post` 서비스를 담당하는 gRPC server를 하나 더 만들어서 `User` 서비스와 통신하도록 만드려고 한다.
 
-`Post` 서비스는 유저들이 작성한 Post(게시글)들을 담당하고 있는 서비스이고 두개의 rpc를 갖도록 구현하려고 한다. ([post.proto](https://github.com/dojinkimm/go-grpc-example/blob/main/protos/post/post.proto))
+`Post` 서비스는 유저들이 작성한 Post(게시글)들을 담당하고 있는 서비스이고 두개의 rpc를 갖도록 구현하려고 한다. ([post.proto](https://github.com/dojinkimm/go-grpc-example/blob/main/protos/v1/post/post.proto))
 
 1. `ListPostsByUserId` user id를 전달하면, user id에 해당하는(유저가 작성한) 모든 Post(게시글)들을 리턴하는 rpc이다
 2. `ListPosts`는 서비스에 존재하는 모든 Post(게시글)들을 리턴하는 rpc이다
