@@ -1,10 +1,9 @@
 ---
-title: 2021년 기록하는 글
+title: 2021년을 기록하는 글
 date: 2021-12-19
 tags:
   - retrospect
 keywords:
-  - 2021
   - retrospect
   - data engineering
   - experiment platform
