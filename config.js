@@ -12,9 +12,9 @@ module.exports = {
   ogImageFileName: 'think.png',
 
   /** Home > Bio information*/
-  comment: 'Server Engineer @Banksalad',
+  comment: 'Software Engineer @daangn',
   name: 'Dojin Kim',
-  company: '@Banksalad',
+  company: '@daangn',
   location: 'Korea',
   email: 'dojinkim119@gmail.com',
   resume: 'https://www.notion.so/henrystudy/Henry-Kim-s-Resume-af138c53c97c4e4c91c5177d01e03e7b',
